@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+</h:head>
+<h:body>
+    <b:container>
+        <b:row>
+            <b:column col-md="6">
+                <h:form>
+                    <b:inputText a:placeholder="Username" type="text" value="#{LoginMB.user.username}"/>
+                    <br/>
+                    <b:inputText a:placeholder="Password" type="password" value="#{LoginMB.user.password}"/>
+                    <br/>
+                    <b:commandButton value="Login" action="#{LoginMB.login}" ajax="false"/>
+                </h:form>
+            </b:column>
+        </b:row>
+    </b:container>
+</h:body>
+</html>
+
