@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 public class UserDAOImpl implements UserDAO {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("WAPUnit");
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("wunit");
     private EntityManager em = emf.createEntityManager();
 
     @Override

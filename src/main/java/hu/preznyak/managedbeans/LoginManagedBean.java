@@ -1,16 +1,15 @@
 package hu.preznyak.managedbeans;
 
-import hu.preznyak.daos.UserDAO;
 import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.User;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 @ManagedBean(name="LoginMB")
-@ViewScoped
+@RequestScoped
 public class LoginManagedBean {
 
     private User user = new User();
