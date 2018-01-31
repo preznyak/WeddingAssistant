@@ -2,11 +2,12 @@ package hu.preznyak.entities;
 
 import javax.persistence.*;
 
+@Table
 @Entity(name = "wa_user")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO  )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false,unique = true)
     private int id;
 
@@ -38,5 +39,8 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User() {
     }
 }
