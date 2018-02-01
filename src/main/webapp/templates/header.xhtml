@@ -12,10 +12,11 @@
 </h:head>
 <h:body  style="padding-top: 50px; padding-bottom: 20px; background-image: url(../images/backgrounda.jpg);">
     <ui:composition>
+        <h:form>
         <b:navBar brand="Wedding Assistant" inverse="true" brandHref="#" fixed="top" style="opacity:0.95;">
             <b:navbarLinks pull="right">
                 <b:navLink value="Home" href="#" iconAwesome=""/>
-                <b:navLink value="Link" href="#"/>
+                <b:navCommandLink value="Logout" action="#{LoginMB.logout}"/>
                 <b:dropMenu value="Dropdown">
                     <b:navLink value="Action" href="#"/>
                     <b:navLink value="Another action" href="#"/>
@@ -27,6 +28,7 @@
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>
+        </h:form>
     </ui:composition>
 </h:body>
 </html>

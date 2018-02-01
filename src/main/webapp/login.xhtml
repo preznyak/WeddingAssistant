@@ -1,13 +1,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 </h:head>
-<h:body>
+<h:body style="padding-top: 60px; padding-bottom: 20px; background-image: url(./images/bckgrnd.jpg); ">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
     <b:container>
         <b:row>
-            <b:column col-md="6">
+            <b:column col-md="4">
                 <h:form>
                     <b:inputText a:placeholder="Username" type="text" value="#{LoginMB.user.username}"/>
                     <br/>
@@ -18,6 +22,9 @@
             </b:column>
         </b:row>
     </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
 </h:body>
 </html>
 

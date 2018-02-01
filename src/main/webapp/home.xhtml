@@ -4,13 +4,18 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Wedding Assistant Home</title>
 </h:head>
-<h:body>
-    <p:outputLabel value="Welcome to wedding assistant"/>
-
+<h:body style="padding-top: 70px; padding-bottom: 20px; background-image: url(./images/bckgrnd.jpg);">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <p:outputLabel value="Welcome to wedding assistant, #{LoginMB.user.firstName}"/>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
 </h:body>
 </html>

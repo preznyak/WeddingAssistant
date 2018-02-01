@@ -9,7 +9,7 @@
 <h:head>
    <title>Wedding Assistant</title>
 </h:head>
-<h:body style="padding-top: 40px; padding-bottom: 20px; background-image: url(./images/backgrounda.jpg);">
+<h:body style="padding-top: 40px; padding-bottom: 20px; background-image: url(./images/bckgrnd.jpg);">
    <ui:insert name="header">
          <ui:include src="./templates/header.xhtml"/>
    </ui:insert>
@@ -21,7 +21,7 @@
                <b:carouselItem>
                   <img src="./images/camera.jpg"/>
                   <b:carouselCaption>
-                     <h2>Are you looking for a photographer?</h2>
+                     <h2 style="color: black">Are you looking for a photographer?</h2>
                   </b:carouselCaption>
                </b:carouselItem>
                <b:carouselItem>
@@ -42,29 +42,30 @@
             <b:thumbnail inline="true" style="opacity: 0.8;" inverse="true" >
                <h:form>
                   <h3 style="text-align: center">Register now for free!</h3>
-                  <b:inputText a:placeholder="Email address">
+                  <b:inputText a:placeholder="Email address" value="#{RegistrationMB.user.email}">
                      <f:facet name="email">
 
                      </f:facet>
                   </b:inputText>
                   <br/>
-                  <b:inputText a:placeholder="First name"/>
+                  <b:inputText a:placeholder="Username" value="#{RegistrationMB.user.username}"/>
                   <br/>
-                  <b:inputText a:placeholder="Last name"/>
+                  <b:inputText a:placeholder="First name" value="#{RegistrationMB.user.firstName}"/>
                   <br/>
-                  <b:inputText a:placeholder="Password" type="password"/>
+                  <b:inputText a:placeholder="Last name" value="#{RegistrationMB.user.lastName}"/>
+                  <br/>
+                  <b:inputText a:placeholder="Password" type="password" value="#{RegistrationMB.user.password}"/>
                   <br/>
                   <b:inputText a:placeholder="Confirm password" type="password"/>
                   <br/>
-                  <b:button look="primary" value="Register" iconAwesome="fa fa-life-ring"/>
+                  <b:commandButton value="Register" look="primary" action="${RegistrationMB.register()}"/>
                 </h:form>
             </b:thumbnail>
          </b:column>
       </b:row>
-      <ui:insert name="header">
-         <ui:include src="./templates/footer.xhtml"/>
-      </ui:insert>
    </b:container>
-
+   <ui:insert name="footer">
+      <ui:include src="./templates/footer.xhtml"/>
+   </ui:insert>
 </h:body>
 </html>

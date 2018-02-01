@@ -2,15 +2,19 @@ package hu.preznyak.managedbeans;
 
 import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.User;
+import hu.preznyak.utils.SessionUtils;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+import java.io.Serializable;
 
 @ManagedBean(name="LoginMB")
 @RequestScoped
-public class LoginManagedBean {
+public class LoginManagedBean implements Serializable{
+
 
     private User user = new User();
 
@@ -20,20 +24,21 @@ public class LoginManagedBean {
         if(user == null){
             user = new User();
             FacesContext.getCurrentInstance().addMessage(
-                    null,
+                    "login",
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "user not found",
                             "Login error."));
             return "/login";
         } else {
+            HttpSession session = SessionUtils.getSession();
+            session.setAttribute("name",user.getFirstName()+user.getLastName());
             return "/home";
         }
-        /*
-        if(user.getUsername().equals("preznyak") && user.getPassword().equals("preznyakpw")){
-            return "/home";
-        } else {
-            return "/login";
-        }
-        */
+    }
+
+    public String logout(){
+        HttpSession session = SessionUtils.getSession();
+        session.invalidate();
+        return "/index";
     }
 
     public User getUser() {
