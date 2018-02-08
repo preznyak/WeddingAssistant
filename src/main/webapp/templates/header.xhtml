@@ -2,9 +2,7 @@
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:f="http://java.sun.com/jsf/core"
+<html   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:b="http://bootsfaces.net/ui">
 
@@ -13,17 +11,19 @@
 <h:body  style="padding-top: 50px; padding-bottom: 20px; background-image: url(../images/backgrounda.jpg);">
     <ui:composition>
         <h:form>
-        <b:navBar brand="Wedding Assistant" inverse="true" brandHref="#" fixed="top" style="opacity:0.95;">
+        <b:navBar brand="Wedding Assistant" inverse="false" brandHref="#" fixed="top">
             <b:navbarLinks pull="right">
+                <b:navCommandLink value="Login" action="#{NavigationMB.goToLogin}" iconAwesome=""/>
                 <b:navLink value="Home" href="#" iconAwesome=""/>
-                <b:navCommandLink value="Logout" action="#{LoginMB.logout}"/>
-                <b:dropMenu value="Dropdown">
-                    <b:navLink value="Action" href="#"/>
-                    <b:navLink value="Another action" href="#"/>
-                    <b:navLink value="Something else here" href="#"/>
+                <b:navCommandLink value="Logout" action="#{LoginMB.logout}" disabled="#{!LoginMB.loggedIn}"/>
+                <b:dropMenu value="Dropdown" contentDisabled="#{!LoginMB.loggedIn}">
+                    <b:navCommandLink value="Index" action="#{NavigationMB.goToIndex}"/>
+                    <b:navCommandLink value="Create Service" action="#{NavigationMB.goToCreateService}"/>
+                    <b:navCommandLink value="My Services" action="#{NavigationMB.goToMyServices}"/>
+                    <b:navCommandLink value="Services" action="#{NavigationMB.goToAllServices}"/>
                     <b:navLink/>
-                    <b:navLink header="Nav header"/>
-                    <b:navLink value="Separated link" href="#"/>
+                    <b:navLink header="My Services"/>
+                    <b:navLink value="Separated link" href="#" />
                     <b:navLink value="One more separated link" href="#"/>
                 </b:dropMenu>
             </b:navbarLinks>
