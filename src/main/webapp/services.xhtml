@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+    <title>Services</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="8">
+                <h:form>
+                    <b:dataTable value="#{ServicesListMB.serviceList}" var="service">
+                        <b:dataTableColumn value="#{service.id}"/>
+                        <b:dataTableColumn value="#{service.serviceType}"/>
+                        <b:dataTableColumn value="#{service.user.email}"/>
+                        <b:dataTableColumn value="#{service.description}"/>
+                    </b:dataTable>
+                </h:form>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+</h:body>
+</html>
