@@ -6,15 +6,16 @@ import hu.preznyak.utils.SessionUtils;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
 @ManagedBean(name="LoginMB")
-@RequestScoped
+@SessionScoped
 public class LoginManagedBean implements Serializable{
 
+    private boolean loggedIn;
 
     private User user = new User();
 
@@ -30,7 +31,8 @@ public class LoginManagedBean implements Serializable{
             return "/login";
         } else {
             HttpSession session = SessionUtils.getSession();
-            session.setAttribute("name",user.getFirstName()+user.getLastName());
+            session.setAttribute("userid",user.getId());
+            loggedIn=true;
             return "/home";
         }
     }
@@ -38,6 +40,7 @@ public class LoginManagedBean implements Serializable{
     public String logout(){
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
+        loggedIn=false;
         return "/index";
     }
 
@@ -47,6 +50,14 @@ public class LoginManagedBean implements Serializable{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 
     public LoginManagedBean() {
