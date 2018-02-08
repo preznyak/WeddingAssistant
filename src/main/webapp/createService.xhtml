@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Create Your Service</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="8" style="padding: 50px;">
+                <b:thumbnail style="opacity: 0.9;" inverse="true">
+                    <h:form>
+                        <h3 style="text-align: center">Create you own service!</h3>
+                        <b:formGroup>
+                            <b:selectOneMenu value="#{CreateServicesMB.type}" required="true"
+                                             label="Select your service's type" colMd="3" labelColMd="3">
+                                <f:selectItem itemLabel="MASTER_OF_CEREMONIES" itemValue="MASTER_OF_CEREMONIES"/>
+                                <f:selectItem itemLabel="RESTAURANT" itemValue="RESTAURANT"/>
+                                <f:selectItem itemLabel="BAND" itemValue="BAND"/>
+                            </b:selectOneMenu>
+                        </b:formGroup>
+                        <b:inputText value="#{CreateServicesMB.description}" a:placeholder="Description" type="textarea" required="true"/>
+                        <br/>
+                        <b:commandButton value="Create" look="primary" action="#{CreateServicesMB.createService()}"/>
+                    </h:form>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+</h:body>
+</html>
