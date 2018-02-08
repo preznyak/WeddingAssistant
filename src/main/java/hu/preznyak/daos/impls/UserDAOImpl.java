@@ -1,35 +1,33 @@
 package hu.preznyak.daos.impls;
 
 import hu.preznyak.daos.UserDAO;
+import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
+import hu.preznyak.utils.SingletonEMFactory;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 
 public class UserDAOImpl implements UserDAO {
 
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("waunit");
-    private EntityManager em;
+    private EntityManager em = SingletonEMFactory.getFactory().createEntityManager();
 
     @Override
     public User getUserById(int id) {
-        em = emf.createEntityManager();
         User user;
-        em.getTransaction().begin();
         try{
-            user = (User) em.find(User.class, id);
+            user =  em.find(User.class, id);
         } catch (NoResultException e) {
             e.printStackTrace();
             return null;
         }
-        em.close();
         return user;
     }
 
     @Override
     public User getUser(String username, String password) {
-        em = emf.createEntityManager();
         User user;
         em.getTransaction().begin();
         try {
@@ -43,7 +41,6 @@ public class UserDAOImpl implements UserDAO {
             return null;
         } finally {
             em.getTransaction().commit();
-            em.close();
         }
         return user;
 
@@ -51,8 +48,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean addUser(User user) {
-        em = emf.createEntityManager();
-        em.getTransaction().begin();
         try{
             em.persist(user);
         } catch (PersistenceException e){
@@ -60,30 +55,26 @@ public class UserDAOImpl implements UserDAO {
             return false;
         } finally {
             em.getTransaction().commit();
-            em.close();
         }
         return true;
     }
 
     @Override
     public boolean deleteUser(int id) {
-        em = emf.createEntityManager();
         em.getTransaction().begin();
         try{
             em.remove(getUserById(id));
-            em.getTransaction().commit();
         } catch (PersistenceException e){
             e.printStackTrace();
             return false;
         } finally {
-            em.close();
+            em.getTransaction().commit();
         }
         return true;
     }
 
     @Override
     public User getUserByUsername(String username) {
-        em = emf.createEntityManager();
         User user;
         try {
             em.getTransaction().begin();
@@ -94,9 +85,31 @@ public class UserDAOImpl implements UserDAO {
             e.printStackTrace();
             return null;
         } finally {
-            em.close();
+            em.getTransaction().commit();
         }
         return user;
     }
 
+    @Override
+    public boolean addServiceToUser(User user, Service service) {
+        em.getTransaction().begin();
+        try {
+            List<Service> serviceList = user.getServiceList();
+            serviceList.add(service);
+            if(serviceList.isEmpty()){
+                System.out.println("Empty");
+            } else{
+                System.out.println(serviceList);
+                System.out.println(user.getUsername());
+            }
+            user.setServiceList(serviceList);
+            em.persist(user);
+        } catch (PersistenceException e){
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.getTransaction().commit();
+        }
+        return true;
+    }
 }
