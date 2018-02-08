@@ -19,7 +19,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false)
@@ -31,16 +31,16 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
-    @Column
-    private String roles;
+    @OneToMany(targetEntity = Service.class, cascade = CascadeType.ALL)
+    private List<Service> serviceList;
 
-    public User(String username, String password, String firstName, String email, String lastName) {
+    public User(String username, String password, String firstName, String email, String lastName, List<Service> serviceList) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.email = email;
         this.lastName = lastName;
-        this.roles = this.getRoles() + Roles.USER.toString();
+        this.serviceList = serviceList;
     }
 
     public int getId() {
@@ -91,14 +91,27 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getRoles() {
-        return roles;
+    public List getServiceList() {
+        return serviceList;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setServiceList(List<Service> serviceList) {
+        this.serviceList = serviceList;
     }
 
     public User() {
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", email='" + email + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", serviceList=" + serviceList +
+                '}';
     }
 }
