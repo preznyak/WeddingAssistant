@@ -1,5 +1,6 @@
 package hu.preznyak.daos;
 
+import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
 
 public interface UserDAO {
@@ -8,4 +9,5 @@ public interface UserDAO {
     User getUserByUsername(String username);
     boolean addUser(User user);
     boolean deleteUser(int id);
+    boolean addServiceToUser(User user, Service service);
 }
