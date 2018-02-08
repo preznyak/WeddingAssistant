@@ -9,5 +9,4 @@ public class SessionUtils {
         return (HttpSession) FacesContext.getCurrentInstance()
                 .getExternalContext().getSession(false);
     }
-
 }
