@@ -9,13 +9,16 @@
 <h:head>
    <title>Wedding Assistant</title>
 </h:head>
-<h:body style="padding-top: 40px; padding-bottom: 20px; background-image: url(./images/bckgrnd.jpg);">
+<h:body style="padding-top: 20px; padding-bottom: 20px; background-image: url(./images/IMG_0121.JPG); background-size: cover" >
    <ui:insert name="header">
          <ui:include src="./templates/header.xhtml"/>
    </ui:insert>
    <b:container>
       <b:row>
-         <b:column col-md="7">
+         <b:column col-md="8">
+            <br/>
+            <h1 style="text-align: center">Welcome to Wedding Assistant!</h1>
+            <!--
             <h3 style="text-align: center">Organize your dream wedding with Wedding Assistant!</h3>
             <b:carousel id="parque" style="width:650px; height:430px; opacity:0.8;" visible="lg">
                <b:carouselItem>
@@ -37,28 +40,29 @@
                   </b:carouselCaption>
                </b:carouselItem>
             </b:carousel>
+            -->
          </b:column>
-         <b:column col-md="5" style="padding: 50px;">
-            <b:thumbnail inline="true" style="opacity: 0.8;" inverse="true" >
+         <b:column col-md="4" style="padding: 50px;">
+            <b:thumbnail style="opacity: 0.9;" inverse="true">
                <h:form>
                   <h3 style="text-align: center">Register now for free!</h3>
-                  <b:inputText a:placeholder="Email address" value="#{RegistrationMB.user.email}">
+                  <b:inputText a:placeholder="Email address" value="#{RegistrationMB.user.email}" required="true">
                      <f:facet name="email">
 
                      </f:facet>
                   </b:inputText>
                   <br/>
-                  <b:inputText a:placeholder="Username" value="#{RegistrationMB.user.username}"/>
+                  <b:inputText a:placeholder="Username" value="#{RegistrationMB.user.username}" required="true" />
                   <br/>
-                  <b:inputText a:placeholder="First name" value="#{RegistrationMB.user.firstName}"/>
+                  <b:inputText a:placeholder="First name" value="#{RegistrationMB.user.firstName}" required="true"/>
                   <br/>
-                  <b:inputText a:placeholder="Last name" value="#{RegistrationMB.user.lastName}"/>
+                  <b:inputText a:placeholder="Last name" value="#{RegistrationMB.user.lastName}" required="true"/>
                   <br/>
-                  <b:inputText a:placeholder="Password" type="password" value="#{RegistrationMB.user.password}"/>
+                  <b:inputText a:placeholder="Password" type="password" value="#{RegistrationMB.user.password}" required="true"/>
                   <br/>
-                  <b:inputText a:placeholder="Confirm password" type="password"/>
+                  <b:inputText a:placeholder="Confirm password" type="password" required="true"/>
                   <br/>
-                  <b:commandButton value="Register" look="primary" action="${RegistrationMB.register()}"/>
+                  <b:commandButton value="Register" look="primary" action="#{RegistrationMB.register()}"/>
                 </h:form>
             </b:thumbnail>
          </b:column>

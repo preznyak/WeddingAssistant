@@ -5,19 +5,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 </h:head>
-<h:body style="padding-top: 60px; padding-bottom: 20px; background-image: url(./images/bckgrnd.jpg); ">
+<h:body style="padding-top: 150px; padding-bottom: 20px; background-image: url(./images/IMG_0121.JPG); background-size: cover">
     <ui:insert name="header">
         <ui:include src="./templates/header.xhtml"/>
     </ui:insert>
     <b:container>
         <b:row>
             <b:column col-md="4">
+
+            </b:column>
+            <b:column col-md="4">
                 <h:form>
                     <b:inputText a:placeholder="Username" type="text" value="#{LoginMB.user.username}"/>
                     <br/>
                     <b:inputText a:placeholder="Password" type="password" value="#{LoginMB.user.password}"/>
                     <br/>
-                    <b:commandButton value="Login" action="#{LoginMB.login}" ajax="false"/>
+                    <b:commandButton value="Login" action="#{LoginMB.login}" ajax="false" look="primary"/>
                 </h:form>
             </b:column>
         </b:row>
