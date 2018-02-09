@@ -22,18 +22,21 @@ public class Service {
     @Column
     private String description;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    @Column
+    private String website;
+
     public Service() {
     }
 
-    public Service(User user, ServiceType serviceType, String description) {
+    public Service(User user, ServiceType serviceType, String description, Address address, String website) {
         this.user = user;
         this.serviceType = serviceType;
         this.description = description;
-    }
-
-    public Service(ServiceType serviceType, String description) {
-        this.serviceType = serviceType;
-        this.description = description;
+        this.address = address;
+        this.website = website;
     }
 
     public int getId() {
@@ -68,12 +71,30 @@ public class Service {
         this.description = description;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     @Override
     public String toString() {
         return "Service{" +
                 "id=" + id +
                 ", serviceType=" + serviceType +
                 ", description='" + description + '\'' +
+                ", address=" + address +
+                ", website='" + website + '\'' +
                 '}';
     }
 }
