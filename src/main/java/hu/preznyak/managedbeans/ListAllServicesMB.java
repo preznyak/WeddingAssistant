@@ -1,7 +1,9 @@
 package hu.preznyak.managedbeans;
 
 import hu.preznyak.daos.ServiceDAO;
+import hu.preznyak.daos.UserDAO;
 import hu.preznyak.daos.impls.ServiceDAOImpl;
+import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.Service;
 
 import javax.faces.bean.ManagedBean;
