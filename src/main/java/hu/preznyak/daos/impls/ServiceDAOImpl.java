@@ -2,6 +2,7 @@ package hu.preznyak.daos.impls;
 
 import hu.preznyak.daos.ServiceDAO;
 import hu.preznyak.entities.Service;
+import hu.preznyak.entities.User;
 import hu.preznyak.utils.SingletonEMFactory;
 
 import javax.persistence.EntityManager;
@@ -61,5 +62,22 @@ public class ServiceDAOImpl implements ServiceDAO {
     @Override
     public boolean updateService(Service service) {
         return false;
+    }
+
+    @Override
+    public List<Service> getServicesByUser(User user) {
+        em.getTransaction().begin();
+        List<Service> serviceList;
+        try {
+            serviceList =  em.createQuery("SELECT s FROM service s where s.user.username=:un")
+                    .setParameter("un", user.getUsername())
+                    .getResultList();
+        } catch (PersistenceException e){
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.getTransaction().commit();
+        }
+        return serviceList;
     }
 }

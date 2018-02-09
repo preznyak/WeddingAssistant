@@ -48,6 +48,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean addUser(User user) {
+        em.getTransaction().begin();
         try{
             em.persist(user);
         } catch (PersistenceException e){
@@ -96,12 +97,6 @@ public class UserDAOImpl implements UserDAO {
         try {
             List<Service> serviceList = user.getServiceList();
             serviceList.add(service);
-            if(serviceList.isEmpty()){
-                System.out.println("Empty");
-            } else{
-                System.out.println(serviceList);
-                System.out.println(user.getUsername());
-            }
             user.setServiceList(serviceList);
             em.persist(user);
         } catch (PersistenceException e){
