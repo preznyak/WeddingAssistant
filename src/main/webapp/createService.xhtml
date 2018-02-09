@@ -21,13 +21,20 @@
                         <h3 style="text-align: center">Create you own service!</h3>
                         <b:formGroup>
                             <b:selectOneMenu value="#{CreateServicesMB.type}" required="true"
-                                             label="Select your service's type" colMd="3" labelColMd="3">
+                                             label="Select your service's type">
                                 <f:selectItem itemLabel="MASTER_OF_CEREMONIES" itemValue="MASTER_OF_CEREMONIES"/>
                                 <f:selectItem itemLabel="RESTAURANT" itemValue="RESTAURANT"/>
                                 <f:selectItem itemLabel="BAND" itemValue="BAND"/>
                             </b:selectOneMenu>
                         </b:formGroup>
+                        <b:inputText value="#{CreateServicesMB.serviceName}" a:placeholder="Name" required="true"/>
                         <b:inputText value="#{CreateServicesMB.description}" a:placeholder="Description" type="textarea" required="true"/>
+                        <b:inputText value="#{CreateServicesMB.website}" a:placeholder="Website link" required="true"/>
+                        <b:inputText value="#{CreateServicesMB.newAddress.city}" a:placeholder="CIty" required="true"/>
+                        <b:inputText value="#{CreateServicesMB.newAddress.country}" a:placeholder="Country" required="true"/>
+                        <b:inputText value="#{CreateServicesMB.newAddress.street}" a:placeholder="Street" required="true"/>
+                        <b:inputText value="#{CreateServicesMB.newAddress.postCode}" a:placeholder="Post COde" required="true"/>
+                        <b:inputText value="#{CreateServicesMB.newAddress.houseNumber}" a:placeholder="houseNumber" required="true"/>
                         <br/>
                         <b:commandButton value="Create" look="primary" action="#{CreateServicesMB.createService()}"/>
                     </h:form>

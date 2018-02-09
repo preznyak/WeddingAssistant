@@ -4,15 +4,24 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Wedding Assistant Home</title>
 </h:head>
-<h:body style="padding-top: 70px; padding-bottom: 20px;">
+<h:body style="padding-top: 70px; padding-bottom: 20px; background-image: url(./images/IMG_0121.JPG); background-size: cover">
     <ui:insert name="header">
         <ui:include src="./templates/header.xhtml"/>
     </ui:insert>
-    <p:outputLabel value="Welcome to wedding assistant, #{LoginMB.user.firstName}"/>
+    <b:container>
+        <h:form>
+        <b:jumbotron>
+            <h2>Welcome to Wedding Assistant, #{LoginMB.user.firstName}!</h2>
+            <p>Organize your dream wedding or register your service today!</p>
+            <b:commandButton look="primary" action="#{NavigationMB.goToCreateService}" value="Register your Service!"/>
+        </b:jumbotron>
+        </h:form>
+    </b:container>
     <ui:insert name="footer">
         <ui:include src="./templates/footer.xhtml"/>
     </ui:insert>
