@@ -8,6 +8,7 @@
         <class>hu.preznyak.entities.User</class>
         <class>hu.preznyak.entities.Offer</class>
         <class>hu.preznyak.entities.Service</class>
+        <class>hu.preznyak.entities.Address</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
