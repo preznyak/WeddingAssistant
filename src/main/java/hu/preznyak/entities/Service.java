@@ -12,6 +12,9 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(nullable = false)
+    private String serviceName;
+
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     private User user;
 
@@ -31,12 +34,13 @@ public class Service {
     public Service() {
     }
 
-    public Service(User user, ServiceType serviceType, String description, Address address, String website) {
+    public Service(User user, ServiceType serviceType, String description, Address address, String website, String serviceName) {
         this.user = user;
         this.serviceType = serviceType;
         this.description = description;
         this.address = address;
         this.website = website;
+        this.serviceName = serviceName;
     }
 
     public int getId() {
@@ -87,10 +91,19 @@ public class Service {
         this.website = website;
     }
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
     @Override
     public String toString() {
         return "Service{" +
                 "id=" + id +
+                ", serviceName='" + serviceName + '\'' +
                 ", serviceType=" + serviceType +
                 ", description='" + description + '\'' +
                 ", address=" + address +
