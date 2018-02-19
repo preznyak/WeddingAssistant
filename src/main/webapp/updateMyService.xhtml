@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Create Your Service</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="8" style="padding: 50px;">
+                <b:thumbnail style="opacity: 0.9;" inverse="true">
+                    <h:form>
+                        <h3 style="text-align: center">Update your service!</h3>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.serviceName}" a:placeholder="#{UpdateServiceMB.updateableService.serviceName}"/>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.description}" a:placeholder="#{UpdateServiceMB.updateableService.description}" type="textarea"/>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.website}" a:placeholder="#{UpdateServiceMB.updateableService.website}"/>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.address.city}" a:placeholder="#{UpdateServiceMB.updateableService.address.city}"/>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.address.country}" a:placeholder="#{UpdateServiceMB.updateableService.address.country}"/>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.address.street}" a:placeholder="#{UpdateServiceMB.updateableService.address.street}"/>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.address.postCode}" a:placeholder="#{UpdateServiceMB.updateableService.address.postCode}"/>
+                        <b:inputText value="#{UpdateServiceMB.updateableService.address.houseNumber}" a:placeholder="#{UpdateServiceMB.updateableService.address.houseNumber}"/>
+                        <br/>
+                        <b:commandButton value="Update" look="primary" action="#{UpdateServiceMB.updateService}"/>
+                    </h:form>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+</h:body>
+</html>
