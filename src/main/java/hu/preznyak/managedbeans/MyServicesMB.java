@@ -1,8 +1,6 @@
 package hu.preznyak.managedbeans;
 
-import hu.preznyak.daos.ServiceDAO;
 import hu.preznyak.daos.UserDAO;
-import hu.preznyak.daos.impls.ServiceDAOImpl;
 import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
@@ -10,12 +8,12 @@ import hu.preznyak.utils.SessionUtils;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @ManagedBean(name = "MyServices")
-@ViewScoped
+@RequestScoped
 public class MyServicesMB {
 
     private List<Service> myServicesList;
@@ -25,9 +23,17 @@ public class MyServicesMB {
         HttpSession session = SessionUtils.getSession();
         UserDAO userDAO = new UserDAOImpl();
         User user = userDAO.getUserById((Integer)session.getAttribute("userid"));
-        ServiceDAO serviceDAO = new ServiceDAOImpl();
-        myServicesList = serviceDAO.getServicesByUser(user);
+        myServicesList = user.getServiceList();
     }
+
+    public void removeMyService(int id){
+        HttpSession session = SessionUtils.getSession();
+        UserDAO userDAO = new UserDAOImpl();
+        User user = userDAO.getUserById((Integer)session.getAttribute("userid"));
+        userDAO.removeMyService(user,id);
+        init();
+    }
+
 
     public MyServicesMB() {
     }
@@ -39,4 +45,5 @@ public class MyServicesMB {
     public void setMyServicesList(List<Service> myServicesList) {
         this.myServicesList = myServicesList;
     }
+
 }
