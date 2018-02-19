@@ -17,37 +17,24 @@ public class ServiceDAOImpl implements ServiceDAO {
     @Override
     public Service getServiceById(int id) {
         Service service;
-        em.getTransaction().begin();
         try {
+            em.getTransaction().begin();
             service = em.find(Service.class, id);
         } catch (NoResultException e){
             e.printStackTrace();
             return null;
+        } finally {
+            em.getTransaction().commit();
         }
         return service;
     }
 
-    @Override
-    public boolean removeService(int id) {
-        Service service;
-        em.getTransaction().begin();
-        try {
-            service = em.find(Service.class, id);
-            em.remove(service);
-        } catch (PersistenceException e){
-            e.printStackTrace();
-            return false;
-        } finally {
-            em.getTransaction().commit();
-        }
-        return true;
-    }
 
     @Override
     public List<Service> getAllServices() {
-        em.getTransaction().begin();
         List<Service> serviceList;
         try {
+            em.getTransaction().begin();
             serviceList = em.createQuery("SELECT s FROM service s")
                     .getResultList();
         } catch (PersistenceException e){
@@ -61,23 +48,26 @@ public class ServiceDAOImpl implements ServiceDAO {
 
     @Override
     public boolean updateService(Service service) {
-        return false;
-    }
-
-    @Override
-    public List<Service> getServicesByUser(User user) {
-        em.getTransaction().begin();
-        List<Service> serviceList;
-        try {
-            serviceList =  em.createQuery("SELECT s FROM service s where s.user.username=:un")
-                    .setParameter("un", user.getUsername())
-                    .getResultList();
+        try{
+            Service oldService = em.find(Service.class, service.getId());
+            em.getTransaction().begin();
+            oldService.setDescription(service.getDescription());
+            oldService.setServiceName(service.getServiceName());
+            oldService.setWebsite(service.getWebsite());
+            oldService.getAddress().setCountry(service.getAddress().getCountry());
+            oldService.getAddress().setCity(service.getAddress().getCity());
+            oldService.getAddress().setHouseNumber(service.getAddress().getHouseNumber());
+            oldService.getAddress().setStreet(service.getAddress().getStreet());
+            oldService.getAddress().setPostCode(service.getAddress().getPostCode());
+            em.persist(oldService);
         } catch (PersistenceException e){
             e.printStackTrace();
-            return null;
+            return false;
         } finally {
             em.getTransaction().commit();
         }
-        return serviceList;
+        return true;
     }
+
+
 }
