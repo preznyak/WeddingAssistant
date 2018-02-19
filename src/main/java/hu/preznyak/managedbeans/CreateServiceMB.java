@@ -33,8 +33,7 @@ public class CreateServiceMB {
         UserDAO userDAO = new UserDAOImpl();
         HttpSession session = SessionUtils.getSession();
         User user = userDAO.getUserById((Integer)session.getAttribute("userid"));
-        newService=new Service(user,ServiceType.valueOf(type),description, newAddress, website,serviceName);
-        System.out.println(session.getAttribute("userid"));
+        newService=new Service(ServiceType.valueOf(type),description, newAddress, website,serviceName);
         if(userDAO.addServiceToUser(user,newService)){
             return "/services";
         } else {
