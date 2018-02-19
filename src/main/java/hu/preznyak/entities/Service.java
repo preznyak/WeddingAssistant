@@ -15,9 +15,6 @@ public class Service {
     @Column(nullable = false)
     private String serviceName;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private User user;
-
     @Column
     @Enumerated(EnumType.STRING)
     private ServiceType serviceType;
@@ -34,8 +31,7 @@ public class Service {
     public Service() {
     }
 
-    public Service(User user, ServiceType serviceType, String description, Address address, String website, String serviceName) {
-        this.user = user;
+    public Service(ServiceType serviceType, String description, Address address, String website, String serviceName) {
         this.serviceType = serviceType;
         this.description = description;
         this.address = address;
@@ -49,14 +45,6 @@ public class Service {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public ServiceType getServiceType() {
