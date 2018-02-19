@@ -9,13 +9,13 @@
 <h:head>
     <title>Wedding Assistant Home</title>
 </h:head>
-<h:body style="padding-top: 70px; padding-bottom: 20px; background-image: url(./images/IMG_0121.JPG); background-size: cover">
+<h:body style="padding-top: 80px; padding-bottom: 20px; background-image: url(./images/ring.jpg); background-size: cover">
     <ui:insert name="header">
         <ui:include src="./templates/header.xhtml"/>
     </ui:insert>
     <b:container>
-        <h:form>
-        <b:jumbotron>
+        <h:form style="background-color: inherit">
+        <b:jumbotron style="background-color: inherit;">
             <h2>Welcome to Wedding Assistant, #{LoginMB.user.firstName}!</h2>
             <p>Organize your dream wedding or register your service today!</p>
             <b:commandButton look="primary" action="#{NavigationMB.goToCreateService}" value="Register your Service!"/>

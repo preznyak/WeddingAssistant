@@ -18,15 +18,11 @@
                 <h:form>
                     <b:dataTable value="#{ServicesListMB.serviceList}"
                                  var="service">
-                        <b:dataTableColumn value="#{service.serviceType}"/>
-                        <b:dataTableColumn value="#{service.user.email}"/>
-                        <b:dataTableColumn value="#{service.description}"/>
-                        <b:dataTableColumn value="#{service.website}"/>
-                        <b:dataTableColumn value="#{service.address.city}"/>
-                        <b:dataTableColumn value="#{service.address.country}"/>
-                        <b:dataTableColumn value="#{service.address.street}"/>
-                        <b:dataTableColumn value="#{service.address.postCode}"/>
-                        <b:dataTableColumn value="#{service.address.houseNumber}"/>
+                        <b:dataTableColumn label="Service type" value="#{service.serviceType}"/>
+                        <b:dataTableColumn label="Service name" value="#{service.serviceName}"/>
+                        <b:dataTableColumn label="Description" value="#{service.description}"/>
+                        <b:dataTableColumn label="City" value="#{service.address.city}"/>
+                        <b:dataTableColumn label="Country" value="#{service.address.country}"/>
                     </b:dataTable>
                 </h:form>
             </b:column>

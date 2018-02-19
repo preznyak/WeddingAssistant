@@ -8,7 +8,7 @@
 <h:head>
     <title>My Services</title>
 </h:head>
-<h:body style="padding-top: 70px; padding-bottom: 20px; background-image: url(./images/IMG_0121.JPG); background-size: cover">
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
     <ui:insert name="header">
         <ui:include src="./templates/header.xhtml"/>
     </ui:insert>
@@ -18,16 +18,18 @@
                 <h:form>
                     <b:dataTable value="#{MyServices.myServicesList}"
                                  var="service"
-                                responsive="true">
-                        <b:dataTableColumn value="#{service.serviceType}"/>
-                        <b:dataTableColumn value="#{service.user.email}"/>
-                        <b:dataTableColumn value="#{service.description}"/>
-                        <b:dataTableColumn value="#{service.website}"/>
-                        <b:dataTableColumn value="#{service.address.city}"/>
-                        <b:dataTableColumn value="#{service.address.country}"/>
-                        <b:dataTableColumn value="#{service.address.street}"/>
-                        <b:dataTableColumn value="#{service.address.postCode}"/>
-                        <b:dataTableColumn value="#{service.address.houseNumber}"/>
+                                responsive="true"
+                                style="background-image: inherit">
+                        <b:dataTableColumn label="Service type" value="#{service.serviceType}"/>
+                        <b:dataTableColumn label="Description" value="#{service.description}"/>
+                        <b:dataTableColumn label="City" value="#{service.address.city}"/>
+                        <b:dataTableColumn label="Country" value="#{service.address.country}"/>
+                        <b:dataTableColumn label="Delete">
+                            <b:commandButton value="Delete" action="#{MyServices.removeMyService(service.id)}" look="danger" iconAwesome="trash"/>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="Update">
+                            <b:commandButton value="Update" action="#{UpdateServiceMB.selectServiceForUpdate(service)}" look="primary" iconAwesome="cogs"/>
+                        </b:dataTableColumn>
                     </b:dataTable>
                 </h:form>
             </b:column>
