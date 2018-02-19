@@ -31,7 +31,7 @@ public class User {
     @Column(nullable = false)
     private String lastName;
 
-    @OneToMany(targetEntity = Service.class, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Service.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Service> serviceList;
 
     public User(String username, String password, String firstName, String email, String lastName, List<Service> serviceList) {
