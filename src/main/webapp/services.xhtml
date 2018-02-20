@@ -23,6 +23,9 @@
                         <b:dataTableColumn label="Description" value="#{service.description}"/>
                         <b:dataTableColumn label="City" value="#{service.address.city}"/>
                         <b:dataTableColumn label="Country" value="#{service.address.country}"/>
+                        <b:dataTableColumn label="Show details">
+                            <b:commandButton value="Show details" action="#{ServiceInfoMB.selectServiceForInfo(service)}" look="info" iconAwesome="binoculars"/>
+                        </b:dataTableColumn>
                     </b:dataTable>
                 </h:form>
             </b:column>
