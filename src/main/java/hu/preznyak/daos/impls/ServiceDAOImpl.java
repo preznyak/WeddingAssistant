@@ -2,18 +2,33 @@ package hu.preznyak.daos.impls;
 
 import hu.preznyak.daos.ServiceDAO;
 import hu.preznyak.entities.Service;
-import hu.preznyak.entities.User;
 import hu.preznyak.utils.SingletonEMFactory;
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import java.util.List;
 
+/**
+ * <h1>ServiceDAOImpl class.</h1>
+ * This class implements the {@link ServiceDAO} interface.
+ * It implements all the methods from the interface.
+ *
+ * @author Preznyák László
+ * @version 1.0
+ */
+
 public class ServiceDAOImpl implements ServiceDAO {
 
+    /**
+     * EntityManager for entity operations.
+     */
     private EntityManager em = SingletonEMFactory.getFactory().createEntityManager();
 
+    /**
+     * getServiceById method implementation from {@link ServiceDAO} inteface.
+     * @param id the id of the {@link Service} object.
+     * @return Service a {@link Service} object.
+     */
     @Override
     public Service getServiceById(int id) {
         Service service;
@@ -29,7 +44,10 @@ public class ServiceDAOImpl implements ServiceDAO {
         return service;
     }
 
-
+    /**
+     * getAllServices method implementation from {@link ServiceDAO} interface.
+     * @return List the service list.
+     */
     @Override
     public List<Service> getAllServices() {
         List<Service> serviceList;
@@ -46,6 +64,11 @@ public class ServiceDAOImpl implements ServiceDAO {
         return serviceList;
     }
 
+    /**
+     * updateService method implementation from {@link ServiceDAO} interface.
+     * @param service the {@link Service} object which will be updated.
+     * @return boolean a boolean value.
+     */
     @Override
     public boolean updateService(Service service) {
         try{

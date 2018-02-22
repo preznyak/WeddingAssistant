@@ -4,16 +4,29 @@ import hu.preznyak.daos.UserDAO;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
 import hu.preznyak.utils.SingletonEMFactory;
-
-
 import javax.persistence.*;
 import java.util.List;
 
+/**
+ * <h1>UserDAOImpl class.</h1>
+ * This is a class that implements the {@link UserDAO} interface.
+ *
+ * @author Preznyák László
+ * @version 1.0
+ */
 
 public class UserDAOImpl implements UserDAO {
 
+    /**
+     * EntityManager for entity operations.
+     */
     private EntityManager em = SingletonEMFactory.getFactory().createEntityManager();
 
+    /**
+     * getUserById method implementation from {@link UserDAO} interface.
+     * @param id the id of the user.
+     * @return User a {@link User} object.
+     */
     @Override
     public User getUserById(int id) {
         User user;
@@ -24,8 +37,14 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
         return user;
-}
+    }
 
+    /**
+     * getUser method implementation from {@link UserDAO} interface.
+     * @param username the username of the {@link User}
+     * @param password the password of the {@link User}
+     * @return User a {@link User} object from the database.
+     */
     @Override
     public User getUser(String username, String password) {
         User user;
@@ -46,6 +65,11 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
+    /**
+     * addUser method implementation from {@link UserDAO} interface.
+     * @param user a {@link User} to be added.
+     * @return boolean a boolean value. True if it was successful, false otherwise.
+     */
     @Override
     public boolean addUser(User user) {
         try{
@@ -60,6 +84,12 @@ public class UserDAOImpl implements UserDAO {
         return true;
     }
 
+    /**
+     * addServiceToUser method implementation from {@link UserDAO} interface.
+     * @param user {@link User} object.
+     * @param service {@link Service} object.
+     * @return boolean a boolean value. It's true if the operation was successful, false otherwise.
+     */
     @Override
     public boolean addServiceToUser(User user, Service service) {
         try {
@@ -77,6 +107,12 @@ public class UserDAOImpl implements UserDAO {
         return true;
     }
 
+    /**
+     * removeMyService method implementation from {@link UserDAO} interface.
+     * @param user {@link User} object.
+     * @param id id of a {@link Service} object.
+     * @return boolean a boolean value. It's true if the operation was successful, false otherwise.
+     */
     @Override
     public boolean removeMyService(User user,int id) {
         Service service;
@@ -96,6 +132,12 @@ public class UserDAOImpl implements UserDAO {
         }
         return true;
     }
+
+    /**
+     * getMyServices method implementation from {@link UserDAO} interface.
+     * @param user a {@link User} object.
+     * @return List a List of {@link Service} object.
+     */
     @Override
     public List<Service> getMyServices(User user) {
         List<Service> serviceList;
