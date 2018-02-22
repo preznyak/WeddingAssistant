@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * <h1>UserDAO interface.</h1>
- * Interface class that has a few methods for User entity manipulation.
+ * Interface class that has a few methods for {@link User} entity manipulation.
  *
  * @author Preznyák László
  * @version 1.0
