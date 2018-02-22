@@ -6,7 +6,6 @@ import java.util.List;
 /**
  * <h1>User Entity Class</h1>
  * This is an entity class for User objects.
- * It stores data from the users who registered.
  *
  * @author Preznyák László
  * @version 1.0
