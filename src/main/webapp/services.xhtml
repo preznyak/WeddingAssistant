@@ -18,9 +18,11 @@
                 <h:form>
                     <b:dataTable value="#{ServicesListMB.serviceList}"
                                  var="service">
-                        <b:dataTableColumn label="Service type" value="#{service.serviceType}"/>
                         <b:dataTableColumn label="Service name" value="#{service.serviceName}"/>
                         <b:dataTableColumn label="Description" value="#{service.description}"/>
+                        <b:dataTableColumn label="Website">
+                            <b:navLink href="#{service.website}" icon="globe" value="Page"/>
+                        </b:dataTableColumn>
                         <b:dataTableColumn label="City" value="#{service.address.city}"/>
                         <b:dataTableColumn label="Country" value="#{service.address.country}"/>
                         <b:dataTableColumn label="Show details">

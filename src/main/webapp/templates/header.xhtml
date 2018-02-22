@@ -13,7 +13,7 @@
         <h:form>
         <b:navBar id="header" brand="Wedding Assistant" inverse="true" brandHref="#" fixed="top">
             <b:navbarLinks pull="right">
-                <b:navCommandLink value="Login" action="#{NavigationMB.goToLogin}" iconAwesome=""/>
+                <b:navCommandLink value="Login" action="#{NavigationMB.goToLogin}" iconAwesome="" disabled="#{LoginMB.loggedIn}"/>
                 <b:navCommandLink value="Home" action="#{NavigationMB.goHome}" iconAwesome=""/>
                 <b:navCommandLink value="Logout" action="#{LoginMB.logout}" disabled="#{!LoginMB.loggedIn}"/>
                 <b:dropMenu value="Dropdown" contentDisabled="#{!LoginMB.loggedIn}">
