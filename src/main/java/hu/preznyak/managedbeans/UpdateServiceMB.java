@@ -36,10 +36,12 @@ public class UpdateServiceMB {
 
     /**
      * updateService method for updating the updatableService object.
+     * @return String a navigation string.
      */
-    public void updateService(){
+    public String updateService(){
         ServiceDAO serviceDAO = new ServiceDAOImpl();
         serviceDAO.updateService(updatableService);
+        return "/myServices";
     }
 
     /**
