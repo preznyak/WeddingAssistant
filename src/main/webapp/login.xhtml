@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head>
 </h:head>
-<h:body style="padding-top: 150px; padding-bottom: 20px; background-image: url(./images/ring.jpg); background-size: cover">
+<h:body style="padding-top: 100px; padding-bottom: 20px; background-image: url(./images/ring.jpg); background-size: cover">
     <ui:insert name="header">
         <ui:include src="./templates/header.xhtml"/>
     </ui:insert>
@@ -15,12 +15,10 @@
 
             </b:column>
             <b:column col-md="4">
-                <h:form>
+                <h:form style="font-size:20px; text-align: center">
                     <b:inputText label="Username" a:placeholder="Username" type="text" value="#{LoginMB.user.username}"/>
-                    <br/>
                     <b:inputText label="Password" a:placeholder="Password" type="password" value="#{LoginMB.user.password}"/>
-                    <br/>
-                    <b:commandButton value="Login" action="#{LoginMB.login}" ajax="false" look="primary"/>
+                    <b:commandButton value="Login" style="font-size:20px" action="#{LoginMB.login}" ajax="false" look="primary" largeScreen="full-width" iconAwesome="sign-in"/>
                 </h:form>
             </b:column>
         </b:row>
