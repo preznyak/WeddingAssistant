@@ -7,63 +7,55 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
-   <title>Wedding Assistant</title>
+    <title>Wedding Assistant</title>
 </h:head>
-<h:body style="padding-top: 20px; padding-bottom: 20px; background-image: url(./images/ring.jpg); background-size: cover" >
-   <ui:insert name="header">
-         <ui:include src="./templates/header.xhtml"/>
-   </ui:insert>
-   <b:container>
-      <b:row>
-         <b:column col-md="7">
-            <br/>
-            <h1 style="text-align: center">Welcome to Wedding Assistant!</h1>
-            <!--
-            <h3 style="text-align: center">Organize your dream wedding with Wedding Assistant!</h3>
-            <b:carousel id="parque" style="width:650px; height:430px; opacity:0.8;" visible="lg">
-               <b:carouselItem>
-                  <img src="./images/camera.jpg"/>
-                  <b:carouselCaption>
-                     <h2 style="color: black">Are you looking for a photographer?</h2>
-                  </b:carouselCaption>
-               </b:carouselItem>
-               <b:carouselItem>
-                  <img src="./images/band.jpg"/>
-                  <b:carouselCaption>
-                     <h2>Are you looking for a band?</h2>
-                  </b:carouselCaption>
-               </b:carouselItem>
-               <b:carouselItem>
-                  <img src="./images/vofely.jpg"/>
-                  <b:carouselCaption>
-                     <h2>Are you looking for a ceremony master?</h2>
-                  </b:carouselCaption>
-               </b:carouselItem>
-            </b:carousel>
-            -->
-         </b:column>
-         <b:column col-md="5" style="padding: 50px;">
-            <b:thumbnail style="opacity: 0.9;" inverse="true">
-               <h:form>
-                  <h3 style="text-align: center;">Register now for free!</h3>
-                  <b:inputText label="Email address" a:placeholder="Email address" value="#{RegistrationMB.user.email}" required="true">
-                     <f:facet name="email">
+<h:body style="padding-top: 20px; padding-bottom: 20px; background-image: url(./images/ring.jpg); background-size: cover">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="7">
+                <h:form style="text-align: center">
+                    <br/>
+                    <h1>Welcome to Wedding Assistant!</h1>
+                    <b:jumbotron style="background-color: inherit">
+                    <h3>Organize your dream wedding with Wedding Assistant!</h3>
+                        <p>This is a great place to find services to your wedding!</p>
+                        <p>Here are #{ServicesListMB.serviceList.size()} services registered!</p>
 
-                     </f:facet>
-                  </b:inputText>
-                  <b:inputText label="Username" renderLabel="true" a:placeholder="Username" value="#{RegistrationMB.user.username}" required="true"/>
-                  <b:inputText label="First name" a:placeholder="First name" value="#{RegistrationMB.user.firstName}" required="true"/>
-                  <b:inputText label="Last name" a:placeholder="Last name" value="#{RegistrationMB.user.lastName}" required="true"/>
-                  <b:inputText label="Password" a:placeholder="Password" type="password" value="#{RegistrationMB.user.password}" required="true"/>
-                  <b:inputText label="Confirm password" a:placeholder="Confirm password" type="password" required="true"/>
-                  <b:commandButton value="Register" look="primary" action="#{RegistrationMB.register()}"/>
+
+                    </b:jumbotron>
                 </h:form>
-            </b:thumbnail>
-         </b:column>
-      </b:row>
-   </b:container>
-   <ui:insert name="footer">
-      <ui:include src="./templates/footer.xhtml"/>
-   </ui:insert>
+            </b:column>
+            <b:column col-md="5" style="padding: 50px;">
+                <b:thumbnail style="opacity: 0.9;" inverse="true">
+                    <h:form>
+                        <h3 style="text-align: center;">Register now for free!</h3>
+                        <b:inputText label="Email address" a:placeholder="Email address"
+                                     value="#{RegistrationMB.user.email}" required="true">
+                            <f:facet name="email">
+
+                            </f:facet>
+                        </b:inputText>
+                        <b:inputText label="Username" renderLabel="true" a:placeholder="Username"
+                                     value="#{RegistrationMB.user.username}" required="true"/>
+                        <b:inputText label="First name" a:placeholder="First name"
+                                     value="#{RegistrationMB.user.firstName}" required="true"/>
+                        <b:inputText label="Last name" a:placeholder="Last name" value="#{RegistrationMB.user.lastName}"
+                                     required="true"/>
+                        <b:inputText label="Password" a:placeholder="Password" type="password"
+                                     value="#{RegistrationMB.user.password}" required="true"/>
+                        <b:inputText label="Confirm password" a:placeholder="Confirm password" type="password"
+                                     required="true"/>
+                        <b:commandButton value="Register" look="primary" action="#{RegistrationMB.register()}"/>
+                    </h:form>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
 </h:body>
 </html>
