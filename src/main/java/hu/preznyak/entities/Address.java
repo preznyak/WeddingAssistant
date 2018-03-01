@@ -36,19 +36,19 @@ public class Address {
     /**
      * The post code of the {@link Address}
      */
-    @Column(nullable = false)
+    @Column
     private String postCode;
 
     /**
      * The street of the {@link Address}
      */
-    @Column(nullable = false)
+    @Column
     private String street;
 
     /**
      * The house number of the {@link Address}
      */
-    @Column(nullable = false)
+    @Column
     private String houseNumber;
 
     /**
