@@ -4,6 +4,7 @@ import hu.preznyak.daos.ServiceDAO;
 import hu.preznyak.daos.impls.ServiceDAOImpl;
 import hu.preznyak.entities.Service;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.util.List;
@@ -21,14 +22,15 @@ import java.util.List;
 public class ListAllServicesMB {
 
     /**
-     * The {@link ServiceDAO} that we can use for db operations.
-     */
-    private ServiceDAO serviceDAO = new ServiceDAOImpl();
-
-    /**
      * The {@link Service} list.
      */
-    private List<Service> serviceList = serviceDAO.getAllServices();
+    private List<Service> serviceList;
+
+    @PostConstruct
+    public void init(){
+        ServiceDAO serviceDAO = new ServiceDAOImpl();
+        serviceList = serviceDAO.getAllServices();
+    }
 
     /**
      * No-arg constructor for {@link ListAllServicesMB} class.
