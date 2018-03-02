@@ -2,7 +2,6 @@ package hu.preznyak.managedbeans;
 
 import hu.preznyak.daos.UserDAO;
 import hu.preznyak.daos.impls.UserDAOImpl;
-import hu.preznyak.entities.Address;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
 import hu.preznyak.enums.ServiceType;
@@ -31,11 +30,6 @@ public class CreateServiceMB {
     private Service newService;
 
     /**
-     * The new address of the new service.
-     */
-    private Address newAddress;
-
-    /**
      * The type of the new service.
      */
     private String type;
@@ -46,7 +40,6 @@ public class CreateServiceMB {
     @PostConstruct
     public void init() {
         newService = new Service();
-        newAddress = new Address();
     }
 
     /**
@@ -58,7 +51,6 @@ public class CreateServiceMB {
         HttpSession session = SessionUtils.getSession();
         User user = userDAO.getUserById((Integer) session.getAttribute("userid"));
         newService.setServiceType(ServiceType.valueOf(type));
-        newService.setAddress(newAddress);
         if (userDAO.addServiceToUser(user, newService)) {
             return "/services";
         } else {
@@ -96,21 +88,5 @@ public class CreateServiceMB {
      */
     public void setType(String type) {
         this.type = type;
-    }
-
-    /**
-     * Getter for the newAddress.
-     * @return newAddress the new {@link Address} object.
-     */
-    public Address getNewAddress() {
-        return newAddress;
-    }
-
-    /**
-     * Setter for the newAddress.
-     * @param newAddress the new {@link Address} object.
-     */
-    public void setNewAddress(Address newAddress) {
-        this.newAddress = newAddress;
     }
 }
