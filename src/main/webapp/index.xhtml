@@ -30,7 +30,7 @@
             </b:column>
             <b:column col-md="5" style="padding: 50px;">
                 <b:thumbnail style="opacity: 0.9;" inverse="true">
-                    <h:form>
+                    <h:form prependId="false">
                         <h3 style="text-align: center;">Register now for free!</h3>
                         <b:inputText label="Email address" a:placeholder="Email address"
                                      value="#{RegistrationMB.user.email}" required="true">
@@ -38,16 +38,22 @@
 
                             </f:facet>
                         </b:inputText>
-                        <b:inputText label="Username" renderLabel="true" a:placeholder="Username"
+                        <b:inputText a:placeholder="Username"
                                      value="#{RegistrationMB.user.username}" required="true"/>
-                        <b:inputText label="First name" a:placeholder="First name"
+                        <b:inputText a:placeholder="First name"
                                      value="#{RegistrationMB.user.firstName}" required="true"/>
-                        <b:inputText label="Last name" a:placeholder="Last name" value="#{RegistrationMB.user.lastName}"
+                        <b:inputText a:placeholder="Last name" value="#{RegistrationMB.user.lastName}"
                                      required="true"/>
-                        <b:inputText label="Password" a:placeholder="Password" type="password"
+                        <b:inputText a:placeholder="Password" type="password"
                                      value="#{RegistrationMB.user.password}" required="true"/>
-                        <b:inputText label="Confirm password" a:placeholder="Confirm password" type="password"
+                        <b:inputText a:placeholder="Confirm password" type="password"
                                      required="true"/>
+                        <h:inputText style="width: 100%; margin: 2px 0; padding: 6px 9px; box-sizing: border-box; border-radius: 2px;
+                                            display: inline-block; border: 2px solid #ccc;"
+                                     a:placeholder="Type your address" onfocus="geolocate()" id="autocomplete"
+                                     value="#{RegistrationMB.user.address}" required="true"/>
+                        <br/>
+                        <br/>
                         <b:commandButton value="Register" look="primary" action="#{RegistrationMB.register()}"/>
                     </h:form>
                 </b:thumbnail>
@@ -57,5 +63,10 @@
     <ui:insert name="footer">
         <ui:include src="./templates/footer.xhtml"/>
     </ui:insert>
+    <script type="text/javascript" src="js/geocode.js"/>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJm16fnDGyDjrGacEjo5o7DUVNWdULo8&amp;libraries=places&amp;callback=initAutocomplete">
+
+    </script>
 </h:body>
 </html>
