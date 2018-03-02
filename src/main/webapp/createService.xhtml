@@ -32,28 +32,12 @@
                                      type="textarea" required="true"/>
                         <b:inputText value="#{CreateServicesMB.newService.website}" a:placeholder="Website link"
                                      required="true"/>
-                        <!--
-                        <div id="locationField">
-                            <input id="autocomplete" placeholder="Enter your address"
-                                   onFocus="geolocate()" type="text"/>
-                        </div>
-                        -->
-                        <h:inputText value="#{CreateServicesMB.newAddress.country}" label="Enter your address" id="autocomplete" onfocus="geolocate()"/>
-                        <h:inputText label="House number" id="street_number" value="#{CreateServicesMB.newAddress.houseNumber}"/>
-                        <h:inputText label="Country" id="country"/>
-                        <h:inputText label="City" id="locality" value="#{CreateServicesMB.newAddress.city}"/>
-                        <h:inputText label="Postal code" id="postal_code" value="#{CreateServicesMB.newAddress.postCode}"/>
-                        <h:inputText label="Street" id="route" value="#{CreateServicesMB.newAddress.street}"/>
+                        <h:inputText style="width: 100%; margin: 2px 0; padding: 6px 9px; box-sizing: border-box; border-radius: 2px;
+                                            display: inline-block; border: 2px solid #ccc;"
+                                     value="#{CreateServicesMB.newService.address}" label="Enter your address" id="autocomplete"
+                                     onfocus="geolocate()" required="true"/>
 
-                        <!--
-                        <b:inputText id="autocomplete" onfocus="geolocate()" a:placeholder="Enter your address..." typeahead="true" forceId="true"/>
-                        <b:inputText id="locality" value="#{CreateServicesMB.newAddress.city}" a:placeholder="City" required="true"/>
-                        <b:inputText id="country" value="#{CreateServicesMB.newAddress.country}" a:placeholder="Country" required="true" forceId="true"/>
-                        <b:inputText id="route" value="#{CreateServicesMB.newAddress.street}" a:placeholder="Street"/>
-                        <b:inputText id="postal_code" value="#{CreateServicesMB.newAddress.postCode}" a:placeholder="Post COde"/>
-                        <b:inputText id="street_number" value="#{CreateServicesMB.newAddress.houseNumber}" a:placeholder="houseNumber"/>
-                        <br/>
-                        -->
+
                         <b:commandButton value="Create" look="primary" action="#{CreateServicesMB.createService()}"/>
                     </h:form>
                 </b:thumbnail>
@@ -63,67 +47,7 @@
     <ui:insert name="footer">
         <ui:include src="./templates/footer.xhtml"/>
     </ui:insert>
-    <script type="text/javascript">
-        var placeSearch, autocomplete;
-        var componentForm = {
-            street_number: 'short_name',
-            route: 'long_name',
-            locality: 'long_name',
-            administrative_area_level_1: 'short_name',
-            country: 'long_name',
-            postal_code: 'short_name'
-        };
-
-        function initAutocomplete() {
-            // Create the autocomplete object, restricting the search to geographical
-            // location types.
-            autocomplete = new google.maps.places.Autocomplete(
-                /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-                {types: ['geocode']});
-
-            // When the user selects an address from the dropdown, populate the address
-            // fields in the form.
-            autocomplete.addListener('place_changed', fillInAddress);
-        }
-
-        function fillInAddress() {
-            // Get the place details from the autocomplete object.
-            var place = autocomplete.getPlace();
-
-            for (var component in componentForm) {
-                //document.getElementById(component).value = '';
-                document.getElementById(component).disabled = false;
-            }
-
-            // Get each component of the address from the place details
-            // and fill the corresponding field on the form.
-            for (var i = 0; i &lt; place.address_components.length; i++) {
-                var addressType = place.address_components[i].types[0];
-                if (componentForm[addressType]) {
-                    var val = place.address_components[i][componentForm[addressType]];
-                    document.getElementById(addressType).value = val;
-                }
-            }
-        }
-
-        // Bias the autocomplete object to the user's geographical location,
-        // as supplied by the browser's 'navigator.geolocation' object.
-        function geolocate() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    var geolocation = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-                    var circle = new google.maps.Circle({
-                        center: geolocation,
-                        radius: position.coords.accuracy
-                    });
-                    autocomplete.setBounds(circle.getBounds());
-                });
-            }
-        }
-    </script>
+    <script type="text/javascript" src="js/geocode.js"/>
     <script type="text/javascript"
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJm16fnDGyDjrGacEjo5o7DUVNWdULo8&amp;libraries=places&amp;callback=initAutocomplete">
 
