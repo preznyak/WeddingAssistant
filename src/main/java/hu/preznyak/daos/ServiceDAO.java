@@ -1,6 +1,8 @@
 package hu.preznyak.daos;
 
 import hu.preznyak.entities.Service;
+import hu.preznyak.enums.ServiceType;
+
 import java.util.List;
 
 /**
@@ -31,4 +33,11 @@ public interface ServiceDAO {
      * @return List the list of services.
      */
     List<Service> getAllServices();
+
+    /**
+     * Method for gettin all services by services type.
+     * @param serviceTypes List of services type.
+     * @return List of {@link Service} entities.
+     */
+    List<Service> getServicesByServiceTypes(List<ServiceType> serviceTypes);
 }

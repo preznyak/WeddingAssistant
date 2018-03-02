@@ -2,10 +2,12 @@ package hu.preznyak.daos.impls;
 
 import hu.preznyak.daos.ServiceDAO;
 import hu.preznyak.entities.Service;
+import hu.preznyak.enums.ServiceType;
 import hu.preznyak.utils.SingletonEMFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -88,5 +90,27 @@ public class ServiceDAOImpl implements ServiceDAO {
         return true;
     }
 
-
+    /**
+     * getServicesByServiceTypes method implementation.
+     * @param serviceTypes List of services type.
+     * @return List of {@link Service} entities.
+     */
+    @Override
+    public List<Service> getServicesByServiceTypes(List<ServiceType> serviceTypes) {
+        List<Service> serviceList = new ArrayList<>();
+        try {
+            em.getTransaction().begin();
+            for(ServiceType serviceType : serviceTypes) {
+                serviceList.addAll(em.createQuery("SELECT s FROM service s where s.serviceType = :servicetype")
+                        .setParameter("servicetype",serviceType)
+                        .getResultList());
+            }
+        } catch (PersistenceException e){
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.getTransaction().commit();
+        }
+        return serviceList;
+    }
 }
