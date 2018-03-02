@@ -34,8 +34,8 @@ public class MapViewMB {
         }
     }
 
-    public String setAddressForSearch(String city, String street){
-        forSearch = city + ", " + street;
+    public String setAddressForSearch(String address){
+        forSearch = address;
         return "/mapView";
     }
 

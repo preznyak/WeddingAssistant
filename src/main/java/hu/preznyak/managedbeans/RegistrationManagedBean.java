@@ -34,7 +34,7 @@ public class RegistrationManagedBean {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration Successful",
                             "Welcome"));
-            return "/index";
+            return "/login";
         } else {
             return "/index";
         }
