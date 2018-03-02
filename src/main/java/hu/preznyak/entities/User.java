@@ -59,6 +59,12 @@ public class User {
     private String lastName;
 
     /**
+     * The address of the user.
+     */
+    @Column(nullable = false)
+    private String address;
+
+    /**
      * List of the user's registered services in the application.
      */
     @OneToMany(targetEntity = Service.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -72,14 +78,16 @@ public class User {
      * @param email The email address of the user.
      * @param lastName The last name of the user.
      * @param serviceList Sevice list of the user.
+     * @param address The address of the user.
      */
-    public User(String username, String password, String firstName, String email, String lastName, List<Service> serviceList) {
+    public User(String username, String password, String firstName, String email, String lastName, List<Service> serviceList, String address) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.email = email;
         this.lastName = lastName;
         this.serviceList = serviceList;
+        this.address = address;
     }
 
     /**
@@ -176,6 +184,22 @@ public class User {
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    /**
+     * Getter method for the address.
+     * @return address the address of the user.
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Setter method for the address.
+     * @param address the address of the user.
+     */
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**

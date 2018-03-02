@@ -45,16 +45,16 @@ public class Service {
     private String description;
 
     /**
-     * Address for the service.
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
-
-    /**
      * Website link for the service.
      */
     @Column
     private String website;
+
+    /**
+     * The address of the service.
+     */
+    @Column(nullable = false)
+    private String address;
 
     /**
      * No-arg constructor for service entity.
@@ -66,16 +66,16 @@ public class Service {
      * Constructor for service entity with all variables.
      * @param serviceType Type of the service.
      * @param description Description about the service.
-     * @param address Address fot the service.
      * @param website Wwebsite of the service.
      * @param serviceName Name of the service.
+     * @param address address of the service
      */
-    public Service(ServiceType serviceType, String description, Address address, String website, String serviceName) {
+    public Service(ServiceType serviceType, String description, String website, String serviceName, String address) {
         this.serviceType = serviceType;
         this.description = description;
-        this.address = address;
         this.website = website;
         this.serviceName = serviceName;
+        this.address = address;
     }
 
     /**
@@ -127,22 +127,6 @@ public class Service {
     }
 
     /**
-     * Getter for address.
-     * @return address the address for the service.
-     */
-    public Address getAddress() {
-        return address;
-    }
-
-    /**
-     * Setter for address.
-     * @param address the address for the service.
-     */
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    /**
      * Getter for website.
      * @return website the website of the service.
      */
@@ -175,6 +159,22 @@ public class Service {
     }
 
     /**
+     * Getter method for the address of the service
+     * @return address the address of the service
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * Setter method for the address of the service.
+     * @param address the address of the service.
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
      * ToString method of the Service class.
      * @return String format of a Service object.
      */
@@ -185,8 +185,8 @@ public class Service {
                 ", serviceName='" + serviceName + '\'' +
                 ", serviceType=" + serviceType +
                 ", description='" + description + '\'' +
-                ", address=" + address +
                 ", website='" + website + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
