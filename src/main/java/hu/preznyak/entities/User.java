@@ -70,6 +70,9 @@ public class User {
     @OneToMany(targetEntity = Service.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Service> serviceList;
 
+    @OneToMany(targetEntity = WeddingEvent.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<WeddingEvent> weddingEventList;
+
     /**
      * User constructor with all instance variables.
      * @param username The username of the user.
@@ -77,16 +80,14 @@ public class User {
      * @param firstName The first name of the user.
      * @param email The email address of the user.
      * @param lastName The last name of the user.
-     * @param serviceList Sevice list of the user.
      * @param address The address of the user.
      */
-    public User(String username, String password, String firstName, String email, String lastName, List<Service> serviceList, String address) {
+    public User(String username, String password, String firstName, String email, String lastName, String address) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.email = email;
         this.lastName = lastName;
-        this.serviceList = serviceList;
         this.address = address;
     }
 
@@ -218,6 +219,14 @@ public class User {
         this.serviceList = serviceList;
     }
 
+    public List<WeddingEvent> getWeddingEventList() {
+        return weddingEventList;
+    }
+
+    public void setWeddingEventList(List<WeddingEvent> weddingEventList) {
+        this.weddingEventList = weddingEventList;
+    }
+
     /**
      * Constructor without parameters.
      */
@@ -237,7 +246,7 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", email='" + email + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", serviceList=" + serviceList +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
