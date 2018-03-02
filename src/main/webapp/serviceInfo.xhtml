@@ -24,7 +24,7 @@
                         <h:outputText value="#{ServiceInfoMB.service.description}"/>
                         <br/>
                         <b:commandButton value="Request an offer!" look="primary"/>
-                        <b:commandButton value="Show location in map" look="info" action="#{MapViewMB.setAddressForSearch(ServiceInfoMB.service.address.city,ServiceInfoMB.service.address.street)}"/>
+                        <b:commandButton value="Show location in map" look="info" action="#{MapViewMB.setAddressForSearch(ServiceInfoMB.service.address)}"/>
                     </b:well>
                 </b:form>
             </b:column>

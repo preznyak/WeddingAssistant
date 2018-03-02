@@ -22,12 +22,8 @@
                         <b:inputText value="#{UpdateServiceMB.updatableService.serviceName}" a:placeholder="#{UpdateServiceMB.updatableService.serviceName}"/>
                         <b:inputText value="#{UpdateServiceMB.updatableService.description}" a:placeholder="#{UpdateServiceMB.updatableService.description}" type="textarea"/>
                         <b:inputText value="#{UpdateServiceMB.updatableService.website}" a:placeholder="#{UpdateServiceMB.updatableService.website}"/>
-                        <b:inputText value="#{UpdateServiceMB.updatableService.address.city}" a:placeholder="#{UpdateServiceMB.updatableService.address.city}"/>
-                        <b:inputText value="#{UpdateServiceMB.updatableService.address.country}" a:placeholder="#{UpdateServiceMB.updatableService.address.country}"/>
-                        <b:inputText value="#{UpdateServiceMB.updatableService.address.street}" a:placeholder="#{UpdateServiceMB.updatableService.address.street}"/>
-                        <b:inputText value="#{UpdateServiceMB.updatableService.address.postCode}" a:placeholder="#{UpdateServiceMB.updatableService.address.postCode}"/>
-                        <b:inputText value="#{UpdateServiceMB.updatableService.address.houseNumber}" a:placeholder="#{UpdateServiceMB.updatableService.address.houseNumber}"/>
-                        <br/>
+                        <b:inputText value="#{UpdateServiceMB.updatableService.address}" a:placeholder="#{UpdateServiceMB.updatableService.address}"/>
+
                         <b:commandButton value="Update" look="primary" action="#{UpdateServiceMB.updateService}"/>
                     </h:form>
                 </b:thumbnail>
