@@ -22,8 +22,7 @@
                                 style="background-image: inherit">
                         <b:dataTableColumn label="Service type" value="#{service.serviceType}"/>
                         <b:dataTableColumn label="Description" value="#{service.description}"/>
-                        <b:dataTableColumn label="City" value="#{service.address.city}"/>
-                        <b:dataTableColumn label="Country" value="#{service.address.country}"/>
+                        <b:dataTableColumn label="Address" value="#{service.address}"/>
                         <b:dataTableColumn label="Delete">
                             <b:commandButton value="Delete" action="#{MyServices.removeMyService(service.id)}" look="danger" iconAwesome="trash"/>
                         </b:dataTableColumn>
