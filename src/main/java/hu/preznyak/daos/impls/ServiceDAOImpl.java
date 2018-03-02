@@ -77,11 +77,7 @@ public class ServiceDAOImpl implements ServiceDAO {
             oldService.setDescription(service.getDescription());
             oldService.setServiceName(service.getServiceName());
             oldService.setWebsite(service.getWebsite());
-            oldService.getAddress().setCountry(service.getAddress().getCountry());
-            oldService.getAddress().setCity(service.getAddress().getCity());
-            oldService.getAddress().setHouseNumber(service.getAddress().getHouseNumber());
-            oldService.getAddress().setStreet(service.getAddress().getStreet());
-            oldService.getAddress().setPostCode(service.getAddress().getPostCode());
+            oldService.setAddress(service.getAddress());
             em.persist(oldService);
         } catch (PersistenceException e){
             e.printStackTrace();
