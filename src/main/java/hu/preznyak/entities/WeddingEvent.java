@@ -12,8 +12,8 @@ import java.util.List;
  * @version 1.0
  */
 
-@Entity(name = "wedding")
 @Table
+@Entity(name = "wedding")
 public class WeddingEvent {
 
     /**
@@ -42,12 +42,6 @@ public class WeddingEvent {
     private String description;
 
     /**
-     * The user who created the event.
-     */
-    @OneToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    private User user;
-
-    /**
      * The list of booked services.
      */
     @OneToMany(targetEntity = Service.class)
@@ -64,13 +58,11 @@ public class WeddingEvent {
      * @param eventName the name of the event
      * @param eventDate the date of the event
      * @param description the description of the event
-     * @param user the user who created the event
      */
-    public WeddingEvent(String eventName, LocalDate eventDate, String description, User user) {
+    public WeddingEvent(String eventName, LocalDate eventDate, String description) {
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.description = description;
-        this.user = user;
     }
 
     public int getId() {
@@ -103,14 +95,6 @@ public class WeddingEvent {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public List<Service> getBookedServices() {

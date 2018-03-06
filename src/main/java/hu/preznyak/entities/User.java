@@ -70,7 +70,7 @@ public class User {
     @OneToMany(targetEntity = Service.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Service> serviceList;
 
-    @OneToMany(targetEntity = WeddingEvent.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = WeddingEvent.class, cascade = CascadeType.ALL)
     private List<WeddingEvent> weddingEventList;
 
     /**
