@@ -1,8 +1,10 @@
 package hu.preznyak.daos.impls;
 
 import hu.preznyak.daos.UserDAO;
+import hu.preznyak.daos.WeddingDao;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
+import hu.preznyak.entities.WeddingEvent;
 import hu.preznyak.utils.SingletonEMFactory;
 import javax.persistence.*;
 import java.util.List;
@@ -141,15 +143,68 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<Service> getMyServices(User user) {
         List<Service> serviceList;
+        serviceList =  user.getServiceList();
+        return serviceList;
+    }
+
+    /**
+     * addWeddingToUser implementation from {@link WeddingDao} interface.
+     * @param user the user who created the wedding
+     * @param weddingEvent the new wedding event.
+     * @return boolean a boolean value which show if the operation was successful or not.
+     */
+    @Override
+    public boolean addWeddingToUser(User user, WeddingEvent weddingEvent) {
         try {
             em.getTransaction().begin();
-            serviceList =  user.getServiceList();
+            List<WeddingEvent> weddingEvents = user.getWeddingEventList();
+            weddingEvents.add(weddingEvent);
+            user.setWeddingEventList(weddingEvents);
+            em.persist(user);
         } catch (PersistenceException e){
             e.printStackTrace();
-            return null;
+            return false;
         } finally {
             em.getTransaction().commit();
         }
-        return serviceList;
+        return true;
+    }
+
+    /**
+     * removeMyWedding implementation from {@link WeddingDao} interface.
+     * @param user the user who removes his / her wedding.
+     * @param id the id of the {@link WeddingEvent} which will be removed.
+     * @return boolean a boolean value which show if the operation was successful or not.
+     */
+    @Override
+    public boolean removeMyWedding(User user, int id) {
+        WeddingEvent weddingEvent;
+        try {
+            em.getTransaction().begin();
+            List<WeddingEvent> myWeddings = user.getWeddingEventList();
+            weddingEvent = em.find(WeddingEvent.class, id);
+            myWeddings.remove(weddingEvent);
+            user.setWeddingEventList(myWeddings);
+            em.persist(user);
+            em.remove(weddingEvent);
+        } catch (PersistenceException e){
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.getTransaction().commit();
+        }
+        return true;
+    }
+
+    /**
+     * getMyWeddings implementation from {@link WeddingDao} interface.
+     * @param user the user who owns the {@link WeddingEvent} list.
+     * @return List the given User's list of {@link WeddingEvent} objects.
+     */
+    @Override
+    public List<WeddingEvent> getMyWeddings(User user) {
+        List<WeddingEvent> weddingEvents;
+        weddingEvents =  user.getWeddingEventList();
+        return weddingEvents;
     }
 }
