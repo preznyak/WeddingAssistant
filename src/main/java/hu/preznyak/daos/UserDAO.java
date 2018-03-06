@@ -2,6 +2,8 @@ package hu.preznyak.daos;
 
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
+import hu.preznyak.entities.WeddingEvent;
+
 import java.util.List;
 
 
@@ -59,4 +61,27 @@ public interface UserDAO {
      * @return List a List of services.
      */
     List<Service> getMyServices(User user);
+
+    /**
+     * Adding a new Wedding event to a user's wedding list
+     * @param user the user who created the wedding
+     * @param weddingEvent the new wedding event.
+     * @return boolean a boolean value. true if the operation was successful, false otherwise.
+     */
+    boolean addWeddingToUser(User user, WeddingEvent weddingEvent);
+
+    /**
+     * Removing a {@link WeddingEvent} from the wedding event list of a user.
+     * @param user the user who removes his / her wedding.
+     * @param id the id of the {@link WeddingEvent} which will be removed.
+     * @return boolean a boolean value. true if the operation was successful, false otherwise.
+     */
+    boolean removeMyWedding(User user, int id);
+
+    /**
+     * A method for getting a user's weddingEventList from the database.
+     * @param user the user who owns the {@link WeddingEvent} list.
+     * @return List a list of {@link WeddingEvent} obejcts.
+     */
+    List<WeddingEvent> getMyWeddings(User user);
 }
