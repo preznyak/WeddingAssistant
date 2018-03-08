@@ -47,6 +47,9 @@ public class WeddingEvent {
     @OneToMany(targetEntity = Service.class)
     private List<Service> bookedServices;
 
+    @Column
+    private String location;
+
     /**
      * No-arg constructor for WeddingEvent.
      */
@@ -59,10 +62,11 @@ public class WeddingEvent {
      * @param eventDate the date of the event
      * @param description the description of the event
      */
-    public WeddingEvent(String eventName, LocalDate eventDate, String description) {
+    public WeddingEvent(String eventName, LocalDate eventDate, String description, String location) {
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.description = description;
+        this.location = location;
     }
 
     public int getId() {
@@ -103,5 +107,13 @@ public class WeddingEvent {
 
     public void setBookedServices(List<Service> bookedServices) {
         this.bookedServices = bookedServices;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
