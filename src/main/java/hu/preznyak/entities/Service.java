@@ -1,6 +1,7 @@
 package hu.preznyak.entities;
 
 import hu.preznyak.enums.ServiceType;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -55,6 +56,11 @@ public class Service {
      */
     @Column(nullable = false)
     private String address;
+
+    @Lob
+    @Column
+    @Type(type = "org.hibernate.type.BinaryType")
+    private byte[] image;
 
     /**
      * No-arg constructor for service entity.
@@ -172,6 +178,14 @@ public class Service {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     /**
