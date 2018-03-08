@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Plan your wedding</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="8" style="padding: 50px;">
+                <b:thumbnail style="opacity: 0.9;" inverse="true">
+                    <h:form prependId="false">
+                        <h3 style="text-align: center">Let's start planning!</h3>
+                        <b:inputText value="#{CreateWeddingMB.weddingEvent.eventName}" a:placeholder="Event name (Orsi and Szabi Wedding)"
+                                     required="true"/>
+                        <b:inputText value="#{CreateWeddingMB.weddingEvent.description}" a:placeholder="Description"
+                                     type="textarea" required="true"/>
+                        <h:inputText style="width: 100%; margin: 2px 0; padding: 6px 9px; box-sizing: border-box; border-radius: 2px;
+                                            display: inline-block; border: 2px solid #ccc;"
+                                     value="#{CreateWeddingMB.weddingEvent.location}" label="Location" id="autocomplete"
+                                     onfocus="geolocate()" required="true"/>
+                        <b:datepicker value="#{CreateWeddingMB.eventDate}" label="Date of the wedding" required="true"/>
+                        <b:commandButton value="Create" look="primary" action="#{CreateWeddingMB.createWedding}"/>
+                    </h:form>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+    <script type="text/javascript" src="js/geocode.js"/>
+    <script type="text/javascript"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPJm16fnDGyDjrGacEjo5o7DUVNWdULo8&amp;libraries=places&amp;callback=initAutocomplete">
+
+    </script>
+</h:body>
+
+</html>
