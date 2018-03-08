@@ -60,4 +60,10 @@ public class NavigationMB {
     public String goToLogin(){
         return "/login";
     }
+
+    /**
+     * Method for sending the application to the createWedding page.
+     * @return String address of the createWedding page.
+     */
+    public String goToCreateWedding(){ return "/createWedding"; }
 }
