@@ -1,13 +1,11 @@
 package hu.preznyak.managedbeans;
 
-import hu.preznyak.daos.UserDAO;
-import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
 import hu.preznyak.enums.ServiceType;
-import hu.preznyak.services.ServiceService;
 import hu.preznyak.services.UserService;
 import hu.preznyak.utils.SessionUtils;
+import org.primefaces.model.UploadedFile;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -38,6 +36,8 @@ public class CreateServiceMB {
 
     private UserService userService;
 
+    private UploadedFile uploadedFile;
+
     /**
      * Init method for initializing the managed bean.
      */
@@ -55,6 +55,9 @@ public class CreateServiceMB {
         HttpSession session = SessionUtils.getSession();
         User user = userService.getUserById((Integer) session.getAttribute("userid"));
         newService.setServiceType(ServiceType.valueOf(type));
+        if(uploadedFile!=null) {
+            newService.setImage(uploadedFile.getContents());
+        }
         if (userService.addServiceToUser(user, newService)) {
             return "/services";
         } else {
@@ -92,5 +95,13 @@ public class CreateServiceMB {
      */
     public void setType(String type) {
         this.type = type;
+    }
+
+    public UploadedFile getUploadedFile() {
+        return uploadedFile;
+    }
+
+    public void setUploadedFile(UploadedFile uploadedFile) {
+        this.uploadedFile = uploadedFile;
     }
 }
