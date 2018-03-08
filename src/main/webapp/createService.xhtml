@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Create Your Service</title>
 </h:head>
@@ -36,6 +37,7 @@
                                             display: inline-block; border: 2px solid #ccc;"
                                      value="#{CreateServicesMB.newService.address}" label="Enter your address" id="autocomplete"
                                      onfocus="geolocate()" required="true"/>
+                        <p:fileUpload value="#{CreateServicesMB.uploadedFile}" mode="simple" skinSimple="true"/>
 
 
                         <b:commandButton value="Create" look="primary" action="#{CreateServicesMB.createService()}"/>
