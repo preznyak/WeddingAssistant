@@ -2,7 +2,9 @@ package hu.preznyak.managedbeans;
 
 import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.User;
+import hu.preznyak.services.UserService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,13 +26,19 @@ public class RegistrationManagedBean {
      */
     User user = new User();
 
+    private UserService userService;
+
+    @PostConstruct
+    public void init(){
+        userService = new UserService();
+    }
+
     /**
      * register method for registration.
      * @return String a navigation String.
      */
     public String register(){
-        UserDAOImpl userDAO = new UserDAOImpl();
-        if(userDAO.addUser(user)) {
+        if(userService.addUser(user)) {
             FacesContext.getCurrentInstance().addMessage(null,
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration Successful",
                             "Welcome"));

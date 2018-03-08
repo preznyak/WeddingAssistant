@@ -2,8 +2,10 @@ package hu.preznyak.managedbeans;
 
 import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.User;
+import hu.preznyak.services.UserService;
 import hu.preznyak.utils.SessionUtils;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -33,13 +35,19 @@ public class LoginManagedBean implements Serializable{
      */
     private User user = new User();
 
+    private UserService userService;
+
+    @PostConstruct
+    public void init(){
+        userService = new UserService();
+    }
+
     /**
      * Login method for logging in the application.
      * @return String a String for navigation.
      */
     public String login(){
-        UserDAOImpl userDAO = new UserDAOImpl();
-        user = userDAO.getUser(user.getUsername(), user.getPassword());
+        user = userService.getUser(user.getUsername(), user.getPassword());
         if(user == null){
             user = new User();
             FacesContext.getCurrentInstance().addMessage(

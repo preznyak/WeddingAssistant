@@ -5,6 +5,8 @@ import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
 import hu.preznyak.enums.ServiceType;
+import hu.preznyak.services.ServiceService;
+import hu.preznyak.services.UserService;
 import hu.preznyak.utils.SessionUtils;
 
 import javax.annotation.PostConstruct;
@@ -34,12 +36,15 @@ public class CreateServiceMB {
      */
     private String type;
 
+    private UserService userService;
+
     /**
      * Init method for initializing the managed bean.
      */
     @PostConstruct
     public void init() {
         newService = new Service();
+        userService = new UserService();
     }
 
     /**
@@ -47,11 +52,10 @@ public class CreateServiceMB {
      * @return String the name of a page.
      */
     public String createService() {
-        UserDAO userDAO = new UserDAOImpl();
         HttpSession session = SessionUtils.getSession();
-        User user = userDAO.getUserById((Integer) session.getAttribute("userid"));
+        User user = userService.getUserById((Integer) session.getAttribute("userid"));
         newService.setServiceType(ServiceType.valueOf(type));
-        if (userDAO.addServiceToUser(user, newService)) {
+        if (userService.addServiceToUser(user, newService)) {
             return "/services";
         } else {
             return "/home";

@@ -3,7 +3,9 @@ package hu.preznyak.managedbeans;
 import hu.preznyak.daos.ServiceDAO;
 import hu.preznyak.daos.impls.ServiceDAOImpl;
 import hu.preznyak.entities.Service;
+import hu.preznyak.services.ServiceService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -24,6 +26,13 @@ public class UpdateServiceMB {
      */
     private Service updatableService;
 
+    private ServiceService serviceService;
+
+    @PostConstruct
+    public void init(){
+        serviceService = new ServiceService();
+    }
+
     /**
      * selectServiceForUpdate method for selecting a {@link Service} for update.
      * @param service a {@link Service} object.
@@ -39,8 +48,7 @@ public class UpdateServiceMB {
      * @return String a navigation string.
      */
     public String updateService(){
-        ServiceDAO serviceDAO = new ServiceDAOImpl();
-        serviceDAO.updateService(updatableService);
+        serviceService.updateService(updatableService);
         return "/myServices";
     }
 

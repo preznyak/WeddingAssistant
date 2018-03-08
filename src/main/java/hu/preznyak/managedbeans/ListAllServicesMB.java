@@ -3,6 +3,7 @@ package hu.preznyak.managedbeans;
 import hu.preznyak.daos.ServiceDAO;
 import hu.preznyak.daos.impls.ServiceDAOImpl;
 import hu.preznyak.entities.Service;
+import hu.preznyak.services.ServiceService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -26,10 +27,12 @@ public class ListAllServicesMB {
      */
     private List<Service> serviceList;
 
+    private ServiceService serviceService;
+
     @PostConstruct
     public void init(){
-        ServiceDAO serviceDAO = new ServiceDAOImpl();
-        serviceList = serviceDAO.getAllServices();
+        serviceService = new ServiceService();
+        serviceList = serviceService.getAllServices();
     }
 
     /**

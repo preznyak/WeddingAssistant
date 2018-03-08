@@ -4,6 +4,7 @@ import hu.preznyak.daos.UserDAO;
 import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
+import hu.preznyak.services.UserService;
 import hu.preznyak.utils.SessionUtils;
 
 import javax.annotation.PostConstruct;
@@ -29,14 +30,16 @@ public class MyServicesMB {
      */
     private List<Service> myServicesList;
 
+    private UserService userService;
+
     /**
      * Init method of the {@link MyServicesMB} class.
      */
     @PostConstruct
     public void init(){
         HttpSession session = SessionUtils.getSession();
-        UserDAO userDAO = new UserDAOImpl();
-        User user = userDAO.getUserById((Integer)session.getAttribute("userid"));
+        userService = new UserService();
+        User user = userService.getUserById((Integer)session.getAttribute("userid"));
         myServicesList = user.getServiceList();
     }
 
@@ -46,9 +49,8 @@ public class MyServicesMB {
      */
     public void removeMyService(int id){
         HttpSession session = SessionUtils.getSession();
-        UserDAO userDAO = new UserDAOImpl();
-        User user = userDAO.getUserById((Integer)session.getAttribute("userid"));
-        userDAO.removeMyService(user,id);
+        User user = userService.getUserById((Integer)session.getAttribute("userid"));
+        userService.removeMyService(user,id);
         init();
     }
 
