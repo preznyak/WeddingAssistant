@@ -4,7 +4,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Services</title>
 </h:head>
@@ -24,6 +25,9 @@
                             <b:navLink href="#{service.website}" icon="globe" value="Page"/>
                         </b:dataTableColumn>
                         <b:dataTableColumn label="Address" value="#{service.address}"/>
+                        <b:dataTableColumn label="Rating">
+                            <p:rating value="#{service.calculateRating()}" readonly="true"/>
+                        </b:dataTableColumn>
                         <b:dataTableColumn label="Show details">
                             <b:commandButton value="Show details" action="#{ServiceInfoMB.selectServiceForInfo(service)}" look="info" iconAwesome="binoculars"/>
                         </b:dataTableColumn>
