@@ -66,4 +66,10 @@ public class NavigationMB {
      * @return String address of the createWedding page.
      */
     public String goToCreateWedding(){ return "/createWedding"; }
+
+    /**
+     * Method for sending the application to the createRequest page.
+     * @return String address of the createRequest page.
+     */
+    public String goToCreateRequest(){ return "/createRequest"; }
 }

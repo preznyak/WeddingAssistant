@@ -1,7 +1,5 @@
 package hu.preznyak.managedbeans;
 
-import hu.preznyak.daos.UserDAO;
-import hu.preznyak.daos.impls.UserDAOImpl;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
 import hu.preznyak.services.UserService;

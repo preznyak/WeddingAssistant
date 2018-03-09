@@ -107,4 +107,12 @@ public class ServiceInfoMB {
     public void setNewRating(int newRating) {
         this.newRating = newRating;
     }
+
+    public Service getServiceInfo() {
+        return serviceInfo;
+    }
+
+    public void setServiceInfo(Service serviceInfo) {
+        this.serviceInfo = serviceInfo;
+    }
 }
