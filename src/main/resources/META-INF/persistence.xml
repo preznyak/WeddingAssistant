@@ -10,6 +10,7 @@
         <class>hu.preznyak.entities.Service</class>
         <class>hu.preznyak.entities.WeddingEvent</class>
         <class>hu.preznyak.entities.Rating</class>
+        <class>hu.preznyak.entities.Request</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
