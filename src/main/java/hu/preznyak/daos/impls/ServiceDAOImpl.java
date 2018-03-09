@@ -1,6 +1,7 @@
 package hu.preznyak.daos.impls;
 
 import hu.preznyak.daos.ServiceDAO;
+import hu.preznyak.entities.Rating;
 import hu.preznyak.entities.Service;
 import hu.preznyak.enums.ServiceType;
 import hu.preznyak.utils.SingletonEMFactory;
@@ -112,5 +113,21 @@ public class ServiceDAOImpl implements ServiceDAO {
             em.getTransaction().commit();
         }
         return serviceList;
+    }
+
+    @Override
+    public void rateService(Service service, int rating) {
+        Rating rating1 = new Rating(rating);
+        try {
+            em.getTransaction().begin();
+            List<Rating> ratings = service.getRatings();
+            ratings.add(rating1);
+            service.setRatings(ratings);
+            em.persist(service);
+        } catch (PersistenceException e){
+            e.printStackTrace();
+        } finally {
+            em.getTransaction().commit();
+        }
     }
 }

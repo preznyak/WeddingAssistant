@@ -40,4 +40,6 @@ public interface ServiceDAO {
      * @return List of {@link Service} entities.
      */
     List<Service> getServicesByServiceTypes(List<ServiceType> serviceTypes);
+
+    public void rateService(Service service, int rating);
 }
