@@ -5,7 +5,7 @@
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough" xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Create Your Service</title>
 </h:head>
@@ -18,13 +18,25 @@
         <b:row>
             <b:column col-md="11">
                 <b:form>
+                    <p:growl id="messages" showDetail="true" />
                     <b:well>
                         <h:outputText value="#{ServiceInfoMB.service.serviceName}" style="font-size: large"/>
                         <br/>
                         <h:outputText value="#{ServiceInfoMB.service.description}"/>
+                        <!--
+                        <b:image value="#{ServiceInfoMB.image}" tooltip="Looks awesome, right?"/>
+                        -->
                         <br/>
+                        <!--
                         <b:commandButton value="Request an offer!" look="primary"/>
+                        -->
                         <b:commandButton value="Show location in map" look="info" action="#{MapViewMB.setAddressForSearch(ServiceInfoMB.service.address)}"/>
+                        <br/>
+                        <h:outputText value="Rate this service: "/>
+                        <p:rating value="#{ServiceInfoMB.newRating}">
+                            <p:ajax event="rate" listener="#{ServiceInfoMB.onRate}" update="messages"/>
+                        </p:rating>
+                        <b:commandButton value="Submit rating" action="#{ServiceInfoMB.rateService()}" look="info"/>
                     </b:well>
                 </b:form>
             </b:column>
