@@ -26,4 +26,8 @@ public class ServiceService {
     public List<Service> getServicesByServiceTypes(List<ServiceType> serviceTypes){
         return serviceDAO.getServicesByServiceTypes(serviceTypes);
     }
+
+    public void rateService(Service service, int rating){
+        serviceDAO.rateService(service,rating);
+    }
 }
