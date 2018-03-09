@@ -4,6 +4,7 @@ import hu.preznyak.enums.ServiceType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * <h1>Service Entity Class</h1>
@@ -61,6 +62,9 @@ public class Service {
     @Column
     @Type(type = "org.hibernate.type.BinaryType")
     private byte[] image;
+
+    @OneToMany(targetEntity = Rating.class, cascade = CascadeType.ALL)
+    private List<Rating> ratings;
 
     /**
      * No-arg constructor for service entity.
@@ -186,6 +190,23 @@ public class Service {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public List<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(List<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public int calculateRating(){
+        int ratingAvg = 0;
+        for(Rating rating: this.ratings){
+            ratingAvg += rating.getRatingValue();
+        }
+        ratingAvg = ratingAvg / this.ratings.size();
+        return ratingAvg;
     }
 
     /**
