@@ -25,13 +25,13 @@
                         <b:formGroup>
                             <b:selectOneMenu value="#{CreateRequestMB.newRequest.weddingEvent}" required="true"
                                              label="Select the wedding">
-                                <f:selectItems itemValue="#{MyWeddingsMB.myWeddingsList}"/>
+                                <f:selectItems value="#{MyWeddingsMB.myWeddingsList}" var="wedding" itemLabel="#{wedding.eventName}" itemValue="#{wedding}"/>
                             </b:selectOneMenu>
                         </b:formGroup>
                         <b:formGroup>
                             <b:selectOneMenu value="#{CreateRequestMB.newRequest.service}" required="true"
-                                             label="Select the wedding">
-                                <f:selectItems itemValue="#{ServicesListMB.serviceList}"/>
+                                             label="Select the service">
+                                <f:selectItems value="#{ServicesListMB.serviceList}" var="service" itemLabel="#{service.serviceName}" itemValue="#{service}"/>
                             </b:selectOneMenu>
                         </b:formGroup>
                         <b:inputText value="#{CreateRequestMB.newRequest.note}" a:placeholder="Take a note..."

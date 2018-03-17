@@ -33,6 +33,24 @@
                 </h:form>
             </b:column>
         </b:row>
+        <b:row>
+            <b:column col-md="12">
+                <h:form>
+                    <b:dataTable value="#{MyServices.myRequests}"
+                                 var="myRequest"
+                                 responsive="true"
+                                 style="background-image: inherit">
+                        <b:dataTableColumn label="Service name" value="#{myRequest.service.serviceName}"/>
+                        <b:dataTableColumn label="Wedding event name" value="#{myRequest.weddingEvent.eventName}"/>
+                        <b:dataTableColumn label="Address" value="#{myRequest.weddingEvent.location}"/>
+                        <b:dataTableColumn label="Date" value="#{myRequest.weddingEvent.eventDate}"/>
+                        <b:dataTableColumn label="Send offer">
+                            <b:commandButton value="Send offer" look="primary" iconAwesome="handshake"/>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </b:column>
+        </b:row>
     </b:container>
     <ui:insert name="footer">
         <ui:include src="./templates/footer.xhtml"/>
