@@ -2,14 +2,27 @@ package hu.preznyak.entities;
 
 import javax.persistence.*;
 
+/**
+ * <h1>Rating class</h1>
+ *
+ * @author Preznyák László
+ * @version 1.0
+ */
+
 @Table
 @Entity(name = "rating")
 public class Rating {
 
+    /**
+     * The id of the Rating.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    /**
+     * Rating value.
+     */
     @Column
     private int ratingValue;
 
