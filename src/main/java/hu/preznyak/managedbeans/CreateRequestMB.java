@@ -8,10 +8,10 @@ import hu.preznyak.services.UserService;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name = "CreateRequestMB")
-@SessionScoped
+@RequestScoped
 public class CreateRequestMB {
 
     private RequestService requestService;
@@ -21,6 +21,7 @@ public class CreateRequestMB {
 
     @PostConstruct
     public void init(){
+        newRequest = new Request();
         requestService = new RequestService();
         userService = new UserService();
     }
@@ -30,8 +31,9 @@ public class CreateRequestMB {
         return "/createRequest";
     }
 
-    public void createRequest(){
+    public String createRequest(){
         requestService.createRequest(newRequest);
+        return "/home";
     }
 
     public Request getNewRequest() {

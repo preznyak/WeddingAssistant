@@ -1,7 +1,9 @@
 package hu.preznyak.managedbeans;
 
+import hu.preznyak.entities.Request;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
+import hu.preznyak.services.RequestService;
 import hu.preznyak.services.UserService;
 import hu.preznyak.utils.SessionUtils;
 
@@ -30,6 +32,10 @@ public class MyServicesMB {
 
     private UserService userService;
 
+    private RequestService requestService;
+
+    private List<Request> myRequests;
+
     /**
      * Init method of the {@link MyServicesMB} class.
      */
@@ -39,6 +45,8 @@ public class MyServicesMB {
         userService = new UserService();
         User user = userService.getUserById((Integer)session.getAttribute("userid"));
         myServicesList = user.getServiceList();
+        requestService = new RequestService();
+        myRequests = requestService.getMyRequests(myServicesList);
     }
 
     /**
@@ -74,4 +82,11 @@ public class MyServicesMB {
         this.myServicesList = myServicesList;
     }
 
+    public List<Request> getMyRequests() {
+        return myRequests;
+    }
+
+    public void setMyRequests(List<Request> myRequests) {
+        this.myRequests = myRequests;
+    }
 }
