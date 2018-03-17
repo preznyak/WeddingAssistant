@@ -2,24 +2,46 @@ package hu.preznyak.entities;
 
 import javax.persistence.*;
 
+/**
+ * <h1>Request class</h1>
+ *
+ * @author Preznyák László
+ * @version 1.0
+ */
+
 
 @Table
 @Entity(name = "request")
 public class Request {
 
+    /**
+     * The id of the Request.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    /**
+     * The {@link WeddingEvent} which needs the {@link Service}.
+     */
     @OneToOne(targetEntity = WeddingEvent.class, fetch = FetchType.EAGER)
     private WeddingEvent weddingEvent;
 
+    /**
+     * The {@link Service} which is needed by the {@link WeddingEvent}.
+     */
     @OneToOne(targetEntity = Service.class, fetch = FetchType.EAGER)
     private  Service service;
 
+    /**
+     * Additional note.
+     */
     @Column
     private String note;
 
+    /**
+     * A boolean value, which shows if the Request is active or not anymore.
+     */
     private boolean active;
 
     public Request() {
