@@ -7,7 +7,6 @@ import hu.preznyak.entities.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RequestService {
 
@@ -30,11 +29,7 @@ public class RequestService {
         List<Request> allRequests = getAllRequests();
         List<Request> myRequests = new ArrayList<>();
         for(Service service : myServices){
-            myRequests.addAll(
-                    allRequests.stream()
-                    .filter(request -> request.getService().getId()==service.getId())
-                    .collect(Collectors.toList())
-            );
+            myRequests.addAll(requestDao.getRequestsByService(service));
         }
         return myRequests;
     }
