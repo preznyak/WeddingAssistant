@@ -68,4 +68,20 @@ public class RequestDaoImpl implements RequestDao {
         }
         return requests;
     }
+
+    @Override
+    public boolean updateRequest(Request request) {
+        try {
+            Request dbRequest = em.find(Request.class, request.getId());
+            em.getTransaction().begin();
+            dbRequest.setActive(request.isActive());
+            em.persist(dbRequest);
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            em.getTransaction().commit();
+        }
+        return true;
+    }
 }

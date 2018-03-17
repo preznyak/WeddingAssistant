@@ -9,4 +9,6 @@ public interface RequestDao {
     boolean createRequest(Request request);
     boolean deleteRequest(Request request);
     List<Request> getAllRequests();
+
+    boolean updateRequest(Request request);
 }
