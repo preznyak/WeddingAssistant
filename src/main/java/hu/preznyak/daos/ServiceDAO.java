@@ -41,5 +41,10 @@ public interface ServiceDAO {
      */
     List<Service> getServicesByServiceTypes(List<ServiceType> serviceTypes);
 
-    public void rateService(Service service, int rating);
+    /**
+     * Method for rating a Service.
+     * @param service The Service which is getting rated.
+     * @param rating the rating value.
+     */
+    void rateService(Service service, int rating);
 }
