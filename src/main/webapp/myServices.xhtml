@@ -16,6 +16,7 @@
         <b:row>
             <b:column col-md="12">
                 <h:form>
+                    <h:outputText value="My Services"/>
                     <b:dataTable value="#{MyServices.myServicesList}"
                                  var="service"
                                 responsive="true"
@@ -36,6 +37,7 @@
         <b:row>
             <b:column col-md="12">
                 <h:form>
+                    <h:outputText value="My Requests"/>
                     <b:dataTable value="#{MyServices.myRequests}"
                                  var="myRequest"
                                  responsive="true"
@@ -45,7 +47,7 @@
                         <b:dataTableColumn label="Address" value="#{myRequest.weddingEvent.location}"/>
                         <b:dataTableColumn label="Date" value="#{myRequest.weddingEvent.eventDate}"/>
                         <b:dataTableColumn label="Send offer">
-                            <b:commandButton value="Send offer" look="primary" iconAwesome="handshake"/>
+                            <b:commandButton value="Send offer" look="primary" iconAwesome="handshake" action="#{CreateOfferMB.setWeddingEventAndServiceToOffer(myRequest.weddingEvent,myRequest.service)}"/>
                         </b:dataTableColumn>
                     </b:dataTable>
                 </h:form>
