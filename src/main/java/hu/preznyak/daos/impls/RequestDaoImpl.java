@@ -2,6 +2,7 @@ package hu.preznyak.daos.impls;
 
 import hu.preznyak.daos.RequestDao;
 import hu.preznyak.entities.Request;
+import hu.preznyak.entities.Service;
 import hu.preznyak.utils.SingletonEMFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,5 +84,22 @@ public class RequestDaoImpl implements RequestDao {
             em.getTransaction().commit();
         }
         return true;
+    }
+
+    @Override
+    public List<Request> getRequestsByService(Service service) {
+        List<Request> serviceRequests;
+        try {
+            em.getTransaction().begin();
+            serviceRequests = em.createQuery("select r from request r where r.service = :service and r.active=true")
+                    .setParameter("service",service)
+                    .getResultList();
+        } catch (PersistenceException e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.getTransaction().commit();
+        }
+        return serviceRequests;
     }
 }
