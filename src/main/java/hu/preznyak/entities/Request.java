@@ -11,14 +11,16 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @OneToOne(targetEntity = WeddingEvent.class)
+    @OneToOne(targetEntity = WeddingEvent.class, fetch = FetchType.EAGER)
     private WeddingEvent weddingEvent;
 
-    @OneToOne(targetEntity = Service.class)
+    @OneToOne(targetEntity = Service.class, fetch = FetchType.EAGER)
     private  Service service;
 
     @Column
     private String note;
+
+    private boolean active;
 
     public Request() {
     }
@@ -54,4 +56,13 @@ public class Request {
     public void setNote(String note) {
         this.note = note;
     }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
 }

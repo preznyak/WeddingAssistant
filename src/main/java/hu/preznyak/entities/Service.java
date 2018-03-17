@@ -205,7 +205,9 @@ public class Service {
         for(Rating rating: this.ratings){
             ratingAvg += rating.getRatingValue();
         }
-        ratingAvg = ratingAvg / this.ratings.size();
+        if(ratings.size()!=0) {
+            ratingAvg = ratingAvg / this.ratings.size();
+        }
         return ratingAvg;
     }
 
