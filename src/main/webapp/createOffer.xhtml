@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Ask for an offer!</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="2">
+
+            </b:column>
+            <b:column col-md="6" style="padding: 50px;">
+                <b:thumbnail style="opacity: 0.9;" inverse="true">
+                    <h:form prependId="false">
+                        <h3 style="text-align: center">Send an offer!</h3>
+                        <b:inputText value="#{CreateOfferMB.newOffer.note}" a:placeholder="Take a note..."
+                                     required="true"/>
+                        <b:inputText converter="javax.faces.Double" value="#{CreateOfferMB.newOffer.price}" a:placeholder="Price in Euro">
+                            <f:facet name="append">
+                                <h:outputText value="€"/>
+                            </f:facet>
+                        </b:inputText>
+                        <b:commandButton value="Send" look="primary" action="#{CreateOfferMB.createOffer}"/>
+                    </h:form>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+</h:body>
+</html>
