@@ -23,12 +23,6 @@
                     <h:form prependId="false">
                         <h3 style="text-align: center">Ask for an offer!</h3>
                         <b:formGroup>
-                            <b:selectOneMenu value="#{CreateRequestMB.newRequest.weddingEvent}" required="true"
-                                             label="Select the wedding">
-                                <f:selectItems value="#{MyWeddingsMB.myWeddingsList}" var="wedding" itemLabel="#{wedding.eventName}" itemValue="#{wedding}"/>
-                            </b:selectOneMenu>
-                        </b:formGroup>
-                        <b:formGroup>
                             <b:selectOneMenu value="#{CreateRequestMB.newRequest.service}" required="true"
                                              label="Select the service">
                                 <f:selectItems value="#{ServicesListMB.serviceList}" var="service" itemLabel="#{service.serviceName}" itemValue="#{service}"/>

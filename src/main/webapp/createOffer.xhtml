@@ -21,6 +21,7 @@
             <b:column col-md="6" style="padding: 50px;">
                 <b:thumbnail style="opacity: 0.9;" inverse="true">
                     <h:form prependId="false">
+                        <p:growl id="messages" showDetail="true"/>
                         <h3 style="text-align: center">Send an offer!</h3>
                         <b:inputText value="#{CreateOfferMB.newOffer.note}" a:placeholder="Take a note..."
                                      required="true"/>
@@ -29,6 +30,7 @@
                                 <h:outputText value="€"/>
                             </f:facet>
                         </b:inputText>
+                        <p:signature style="width:150px; height: 50px;" widgetVar="sig" value="#{CreateOfferMB.newOffer.serviceOwnerSignature}"/>
                         <b:commandButton value="Send" look="primary" action="#{CreateOfferMB.createOffer}"/>
                     </h:form>
                 </b:thumbnail>

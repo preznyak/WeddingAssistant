@@ -27,7 +27,7 @@
                         <b:image value="#{ServiceInfoMB.image}" tooltip="Looks awesome, right?"/>
                         -->
                         <br/>
-                        <b:commandButton value="Request an offer!" look="primary" action="#{NavigationMB.goToCreateRequest}"/>
+                        <b:commandButton value="Request an offer!" look="primary" action="#{CreateRequestMB.setWeddingToRequest(MyWeddingMB.myWedding)}"/>
                         <b:commandButton value="Show location in map" look="info" action="#{MapViewMB.setAddressForSearch(ServiceInfoMB.service.address)}"/>
                         <br/>
                         <h:outputText value="Rate this service: "/>
