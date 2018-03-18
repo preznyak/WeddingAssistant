@@ -70,8 +70,11 @@ public class User {
     @OneToMany(targetEntity = Service.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Service> serviceList;
 
-    @OneToMany(targetEntity = WeddingEvent.class, cascade = CascadeType.ALL)
-    private List<WeddingEvent> weddingEventList;
+    /**
+     * The user's Wedding event
+     */
+    @OneToOne(targetEntity = WeddingEvent.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private WeddingEvent weddingEvent;
 
     /**
      * User constructor with all instance variables.
@@ -219,12 +222,12 @@ public class User {
         this.serviceList = serviceList;
     }
 
-    public List<WeddingEvent> getWeddingEventList() {
-        return weddingEventList;
+    public WeddingEvent getWeddingEvent() {
+        return weddingEvent;
     }
 
-    public void setWeddingEventList(List<WeddingEvent> weddingEventList) {
-        this.weddingEventList = weddingEventList;
+    public void setWeddingEvent(WeddingEvent weddingEvent) {
+        this.weddingEvent = weddingEvent;
     }
 
     /**
