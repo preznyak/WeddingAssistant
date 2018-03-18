@@ -50,6 +50,12 @@ public class Offer {
     @Column
     private boolean accepted;
 
+    @Column(length = 3000)
+    private String serviceOwnerSignature;
+
+    @Column(length = 3000)
+    private String weddingOwnerSignature;
+
     public Offer() {
     }
 
@@ -99,6 +105,22 @@ public class Offer {
 
     public void setAccepted(boolean accepted) {
         this.accepted = accepted;
+    }
+
+    public String getServiceOwnerSignature() {
+        return serviceOwnerSignature;
+    }
+
+    public void setServiceOwnerSignature(String serviceOwnerSignature) {
+        this.serviceOwnerSignature = serviceOwnerSignature;
+    }
+
+    public String getWeddingOwnerSignature() {
+        return weddingOwnerSignature;
+    }
+
+    public void setWeddingOwnerSignature(String weddingOwnerSignature) {
+        this.weddingOwnerSignature = weddingOwnerSignature;
     }
 
     @Override
