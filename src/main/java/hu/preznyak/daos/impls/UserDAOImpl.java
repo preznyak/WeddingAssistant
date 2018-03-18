@@ -157,9 +157,7 @@ public class UserDAOImpl implements UserDAO {
     public boolean addWeddingToUser(User user, WeddingEvent weddingEvent) {
         try {
             em.getTransaction().begin();
-            List<WeddingEvent> weddingEvents = user.getWeddingEventList();
-            weddingEvents.add(weddingEvent);
-            user.setWeddingEventList(weddingEvents);
+            user.setWeddingEvent(weddingEvent);
             em.persist(user);
         } catch (PersistenceException e){
             e.printStackTrace();
@@ -173,20 +171,14 @@ public class UserDAOImpl implements UserDAO {
     /**
      * removeMyWedding implementation from {@link WeddingDao} interface.
      * @param user the user who removes his / her wedding.
-     * @param id the id of the {@link WeddingEvent} which will be removed.
      * @return boolean a boolean value which show if the operation was successful or not.
      */
     @Override
-    public boolean removeMyWedding(User user, int id) {
-        WeddingEvent weddingEvent;
+    public boolean removeMyWedding(User user) {
         try {
             em.getTransaction().begin();
-            List<WeddingEvent> myWeddings = user.getWeddingEventList();
-            weddingEvent = em.find(WeddingEvent.class, id);
-            myWeddings.remove(weddingEvent);
-            user.setWeddingEventList(myWeddings);
+            user.setWeddingEvent(null);
             em.persist(user);
-            em.remove(weddingEvent);
         } catch (PersistenceException e){
             e.printStackTrace();
             return false;
@@ -194,17 +186,5 @@ public class UserDAOImpl implements UserDAO {
             em.getTransaction().commit();
         }
         return true;
-    }
-
-    /**
-     * getMyWeddings implementation from {@link WeddingDao} interface.
-     * @param user the user who owns the {@link WeddingEvent} list.
-     * @return List the given User's list of {@link WeddingEvent} objects.
-     */
-    @Override
-    public List<WeddingEvent> getMyWeddings(User user) {
-        List<WeddingEvent> weddingEvents;
-        weddingEvents =  user.getWeddingEventList();
-        return weddingEvents;
     }
 }

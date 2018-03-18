@@ -73,15 +73,7 @@ public interface UserDAO {
     /**
      * Removing a {@link WeddingEvent} from the wedding event list of a user.
      * @param user the user who removes his / her wedding.
-     * @param id the id of the {@link WeddingEvent} which will be removed.
      * @return boolean a boolean value. true if the operation was successful, false otherwise.
      */
-    boolean removeMyWedding(User user, int id);
-
-    /**
-     * A method for getting a user's weddingEventList from the database.
-     * @param user the user who owns the {@link WeddingEvent} list.
-     * @return List a list of {@link WeddingEvent} obejcts.
-     */
-    List<WeddingEvent> getMyWeddings(User user);
+    boolean removeMyWedding(User user);
 }
