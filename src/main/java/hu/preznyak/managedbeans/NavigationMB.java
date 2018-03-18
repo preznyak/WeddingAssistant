@@ -72,4 +72,10 @@ public class NavigationMB {
      * @return String address of the createRequest page.
      */
     public String goToCreateRequest(){ return "/createRequest"; }
+
+    //Method for sending the application to the myWedding page.
+    public String goToMyWedding(){ return "/myWedding"; }
+
+    //Method for sending the application to the myOffers page.
+    public String goToMyOffers(){ return "/myOffers"; }
 }
