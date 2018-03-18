@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>My Wedding</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="12">
+                <b:form>
+                    <b:jumbotron>
+                        <h1>#{MyWeddingMB.myWedding.eventName}</h1>
+                        <p>This is your wedding's page. Here you find informations about how you planning's going.</p>
+                        <b:commandButton value="Search Services" action="#{NavigationMB.goToAllServices}"/>
+                    </b:jumbotron>
+                </b:form>
+            </b:column>
+        </b:row>
+    </b:container>
+    <b:container>
+        <b:row>
+            <b:column col-md="12">
+               <p:accordionPanel value="#{MyWeddingMB.myWedding.bookedServices}" var="service">
+                   <p:tab title="#{service.serviceName}">
+                       <h:outputText value="#{service.description}"/>
+                       <h:outputText value="Price: "/>
+                   </p:tab>
+               </p:accordionPanel>
+            </b:column>
+        </b:row>
+    </b:container>
+    <b:container>
+        <b:row>
+            <h:form>
+                <h:outputText value="Here are the offers you've got!"/>
+                <b:dataTable value="#{MyWeddingMB.offers}"
+                             var="offer"
+                             responsive="true"
+                             style="background-image: inherit">
+                    <b:dataTableColumn label="Service name" value="#{offer.service.serviceName}"/>
+                    <b:dataTableColumn label="Price" value="#{offer.price}"/>
+                </b:dataTable>
+            </h:form>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+</h:body>
+</html>
