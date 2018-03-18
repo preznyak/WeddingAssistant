@@ -40,11 +40,7 @@ public class UserService {
         return userDAO.addWeddingToUser(user,weddingEvent);
     }
 
-    public boolean removeMyWedding(User user, int id){
-        return userDAO.removeMyWedding(user,id);
-    }
-
-    public List<WeddingEvent> getMyWeddings(User user){
-        return userDAO.getMyWeddings(user);
+    public boolean removeMyWedding(User user){
+        return userDAO.removeMyWedding(user);
     }
 }
