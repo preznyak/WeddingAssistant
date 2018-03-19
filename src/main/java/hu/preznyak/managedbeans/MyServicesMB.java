@@ -1,8 +1,10 @@
 package hu.preznyak.managedbeans;
 
+import hu.preznyak.entities.Offer;
 import hu.preznyak.entities.Request;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.User;
+import hu.preznyak.services.OfferService;
 import hu.preznyak.services.RequestService;
 import hu.preznyak.services.UserService;
 import hu.preznyak.utils.SessionUtils;
@@ -36,6 +38,10 @@ public class MyServicesMB {
 
     private List<Request> myRequests;
 
+    private OfferService offerService;
+
+    private List<Offer> myOffers;
+
     /**
      * Init method of the {@link MyServicesMB} class.
      */
@@ -47,6 +53,8 @@ public class MyServicesMB {
         myServicesList = user.getServiceList();
         requestService = new RequestService();
         myRequests = requestService.getMyRequests(myServicesList);
+        offerService = new OfferService();
+        myOffers = offerService.getMyOffers(myServicesList);
     }
 
     /**
@@ -88,5 +96,13 @@ public class MyServicesMB {
 
     public void setMyRequests(List<Request> myRequests) {
         this.myRequests = myRequests;
+    }
+
+    public List<Offer> getMyOffers() {
+        return myOffers;
+    }
+
+    public void setMyOffers(List<Offer> myOffers) {
+        this.myOffers = myOffers;
     }
 }
