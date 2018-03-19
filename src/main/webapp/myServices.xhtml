@@ -4,7 +4,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>My Services</title>
 </h:head>
@@ -36,18 +37,23 @@
         </b:row>
         <b:row>
             <b:column col-md="12">
-                <h:form>
+                <h:form prependId="true">
                     <h:outputText value="My Requests"/>
                     <b:dataTable value="#{MyServices.myRequests}"
                                  var="myRequest"
                                  responsive="true"
                                  style="background-image: inherit">
                         <b:dataTableColumn label="Service name" value="#{myRequest.service.serviceName}"/>
-                        <b:dataTableColumn label="Wedding event name" value="#{myRequest.weddingEvent.eventName}"/>
+                        <b:dataTableColumn label="Wedding event name">
+                            <h:outputLink id="eventName" value="#">
+                                <h:outputText value="#{myRequest.weddingEvent.eventName}"/>
+                            </h:outputLink>
+                        </b:dataTableColumn>
+                        <p:tooltip id="toolTipEventName" for="eventName" value="#{myRequest.note}" trackMouse="true"/>
                         <b:dataTableColumn label="Address" value="#{myRequest.weddingEvent.location}"/>
                         <b:dataTableColumn label="Date" value="#{myRequest.weddingEvent.eventDate}"/>
                         <b:dataTableColumn label="Send offer">
-                            <b:commandButton value="Send offer" look="primary" iconAwesome="handshake" action="#{CreateOfferMB.setWeddingEventAndServiceToOffer(myRequest.weddingEvent,myRequest.service)}"/>
+                            <b:commandButton value="Send offer" look="primary" iconAwesome="handshake" action="#{CreateOfferMB.setWeddingEventAndServiceToOffer(myRequest)}"/>
                         </b:dataTableColumn>
                     </b:dataTable>
                 </h:form>
