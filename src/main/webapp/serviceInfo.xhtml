@@ -39,6 +39,15 @@
                 </b:form>
             </b:column>
         </b:row>
+        <b:row>
+            <b:column col-md="12">
+                <h:form>
+                    <p:schedule id="schedule" value="#{ServiceInfoMB.scheduleModel}">
+
+                    </p:schedule>
+                </h:form>
+            </b:column>
+        </b:row>
     </b:container>
     <ui:insert name="footer">
         <ui:include src="./templates/footer.xhtml"/>
