@@ -41,12 +41,6 @@ public class WeddingEvent {
     @Column(length = 1000)
     private String description;
 
-    /**
-     * The list of booked services.
-     */
-    @OneToMany(targetEntity = Service.class)
-    private List<Service> bookedServices;
-
     @Column
     private String location;
 
@@ -99,14 +93,6 @@ public class WeddingEvent {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<Service> getBookedServices() {
-        return bookedServices;
-    }
-
-    public void setBookedServices(List<Service> bookedServices) {
-        this.bookedServices = bookedServices;
     }
 
     public String getLocation() {
