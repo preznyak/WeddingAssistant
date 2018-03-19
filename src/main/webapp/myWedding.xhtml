@@ -29,10 +29,9 @@
     <b:container>
         <b:row>
             <b:column col-md="12">
-               <p:accordionPanel value="#{MyWeddingMB.myWedding.bookedServices}" var="service">
+               <p:accordionPanel value="#{MyWeddingMB.bookedServices}" var="service">
                    <p:tab title="#{service.serviceName}">
                        <h:outputText value="#{service.description}"/>
-                       <h:outputText value="Price: "/>
                    </p:tab>
                </p:accordionPanel>
             </b:column>
@@ -48,6 +47,9 @@
                              style="background-image: inherit">
                     <b:dataTableColumn label="Service name" value="#{offer.service.serviceName}"/>
                     <b:dataTableColumn label="Price" value="#{offer.price}"/>
+                    <b:dataTableColumn label="Accept">
+                        <b:commandButton value="Accept" look="primary" action="#{MyWeddingMB.acceptOffer(offer)}"/>
+                    </b:dataTableColumn>
                 </b:dataTable>
             </h:form>
         </b:row>
