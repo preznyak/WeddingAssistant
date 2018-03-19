@@ -66,7 +66,6 @@ public class WeddingDaoImpl implements WeddingDao {
         try {
             WeddingEvent oldWeddingEvent = em.find(WeddingEvent.class, weddingEvent.getId());
             em.getTransaction().begin();
-            oldWeddingEvent.setDescription(weddingEvent.getDescription());
             oldWeddingEvent.setEventName(weddingEvent.getEventName());
             em.persist(oldWeddingEvent);
         } catch (PersistenceException e) {
