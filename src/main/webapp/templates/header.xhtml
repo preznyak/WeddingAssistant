@@ -21,9 +21,9 @@
                     <b:navCommandLink value="My Services" action="#{NavigationMB.goToMyServices}"/>
                     <b:navCommandLink value="Services" action="#{NavigationMB.goToAllServices}"/>
                     <b:navLink/>
-                    <b:navCommandLink value="Plan my wedding" action="#{NavigationMB.goToCreateWedding}"/>
-                    <b:navCommandLink value="My Wedding" action="#{NavigationMB.goToMyWedding}"/>
-                    <b:navCommandLink value="My Offers" action="#{NavigationMB.goToMyOffers}"/>
+                    <b:navCommandLink value="Plan my wedding" action="#{NavigationMB.goToCreateWedding}" disabled="#{LoginMB.hasWedding}"/>
+                    <b:navCommandLink value="My Wedding" action="#{NavigationMB.goToMyWedding}" disabled="#{not LoginMB.hasWedding}"/>
+                    <b:navCommandLink value="My Offers" action="#{NavigationMB.goToMyOffers}" disabled="#{not LoginMB.hasWedding}"/>
                 </b:dropMenu>
             </b:navbarLinks>
         </b:navBar>

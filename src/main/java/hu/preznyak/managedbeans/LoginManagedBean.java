@@ -37,6 +37,8 @@ public class LoginManagedBean implements Serializable{
 
     private UserService userService;
 
+    private boolean hasWedding;
+
     @PostConstruct
     public void init(){
         userService = new UserService();
@@ -59,6 +61,7 @@ public class LoginManagedBean implements Serializable{
             HttpSession session = SessionUtils.getSession();
             session.setAttribute("userid",user.getId());
             loggedIn=true;
+            hasWedding = user.getWeddingEvent()!=null ? true : false;
             return "/home";
         }
     }
@@ -104,6 +107,14 @@ public class LoginManagedBean implements Serializable{
      */
     public void setLoggedIn(boolean loggedIn) {
         this.loggedIn = loggedIn;
+    }
+
+    public boolean isHasWedding() {
+        return hasWedding;
+    }
+
+    public void setHasWedding(boolean hasWedding) {
+        this.hasWedding = hasWedding;
     }
 
     /**
