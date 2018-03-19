@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+    <title>My Offers sent</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="12">
+                <h:form>
+                    <h:outputText value="My Offers sent"/>
+                    <b:dataTable value="#{MyServices.myOffers}"
+                                 var="offer"
+                                 responsive="true"
+                                 style="background-image: inherit">
+                        <b:dataTableColumn label="Service name" value="#{offer.service.serviceName}"/>
+                        <b:dataTableColumn label="Event name" value="#{offer.weddingEvent.eventName}"/>
+                        <b:dataTableColumn label="Address" value="#{offer.weddingEvent.location}"/>
+                        <b:dataTableColumn label="Price" value="#{offer.price}"/>
+                        <b:dataTableColumn label="Date" value="#{offer.weddingEvent.eventDate}"/>
+                        <b:dataTableColumn label="Accepted" value="#{offer.accepted}"/>
+                        <b:dataTableColumn label="Delete">
+                            <b:commandButton value="Delete" action="#" look="danger" iconAwesome="trash"/>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="Update">
+                            <b:commandButton value="Update" action="#" look="primary" iconAwesome="cogs"/>
+                        </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+</h:body>
+</html>
