@@ -6,7 +6,9 @@ import hu.preznyak.entities.Offer;
 import hu.preznyak.entities.Service;
 import hu.preznyak.entities.WeddingEvent;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <h1>OfferService class.</h1>
@@ -74,4 +76,45 @@ public class OfferService {
     public boolean updateOffer(Offer offer){
         return offerDAO.updateOffer(offer);
     }
+
+    public List<Offer> getMyOffers(List<Service> services){
+        List<Offer> myOffers = new ArrayList<>();
+        for(Service service : services){
+            myOffers.addAll(getOffersByService(service));
+        }
+        return myOffers;
+    }
+
+    public List<Offer> getMyAcceptedOffers(List<Service> services){
+        List<Offer> acceptedOffers = getMyOffers(services)
+                .stream()
+                .filter(offer -> offer.isAccepted())
+                .collect(Collectors.toList());
+        return acceptedOffers;
+    }
+
+    public List<Offer> getMyNotAcceptedOffers(List<Service> services){
+        List<Offer> acceptedOffers = getMyOffers(services)
+                .stream()
+                .filter(offer -> !offer.isAccepted())
+                .collect(Collectors.toList());
+        return acceptedOffers;
+    }
+
+    public List<Offer> getAcceptedOffersByWeddingEvent(WeddingEvent weddingEvent){
+        List<Offer> acceptedOffers = getOffersByWeddingEvent(weddingEvent)
+                .stream()
+                .filter(offer -> offer.isAccepted())
+                .collect(Collectors.toList());
+        return acceptedOffers;
+    }
+
+    public List<Offer> getNotAcceptedOffersByWeddingEvent(WeddingEvent weddingEvent){
+        List<Offer> acceptedOffers = getOffersByWeddingEvent(weddingEvent)
+                .stream()
+                .filter(offer -> !offer.isAccepted())
+                .collect(Collectors.toList());
+        return acceptedOffers;
+    }
+
 }
