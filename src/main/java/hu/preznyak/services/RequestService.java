@@ -26,7 +26,6 @@ public class RequestService {
     }
 
     public List<Request> getMyRequests(List<Service> myServices){
-        List<Request> allRequests = getAllRequests();
         List<Request> myRequests = new ArrayList<>();
         for(Service service : myServices){
             myRequests.addAll(requestDao.getRequestsByService(service));
