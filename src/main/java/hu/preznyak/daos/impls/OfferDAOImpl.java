@@ -109,6 +109,7 @@ public class OfferDAOImpl implements OfferDAO {
             Offer dbOffer = em.find(Offer.class, offer.getId());
             em.getTransaction().begin();
             dbOffer.setAccepted(offer.isAccepted());
+            dbOffer.setWeddingOwnerSignature(offer.getWeddingOwnerSignature());
             em.persist(dbOffer);
         } catch (PersistenceException e) {
             e.printStackTrace();
