@@ -52,16 +52,10 @@ public class MyWeddingMB {
         User user = userService.getUserById((Integer)session.getAttribute("userid"));
         myWedding = user.getWeddingEvent();
         if(myWedding!=null){
-            offers = offerService.getOffersByWeddingEvent(myWedding);
+            offers = offerService.getNotAcceptedOffersByWeddingEvent(myWedding);
         }
         bookedServices = fillBookedServices();
     }
-
-    public void acceptOffer(Offer offer){
-        offer.setAccepted(true);
-        offerService.updateOffer(offer);
-    }
-
 
     /**
      * No-arg constructor for {@link MyWeddingMB} class.
@@ -108,4 +102,5 @@ public class MyWeddingMB {
     public void setBookedServices(List<Service> bookedServices) {
         this.bookedServices = bookedServices;
     }
+
 }
