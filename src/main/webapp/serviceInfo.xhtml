@@ -22,19 +22,19 @@
                     <b:well>
                         <h:outputText value="#{ServiceInfoMB.service.serviceName}" style="font-size: large"/>
                         <br/>
-                        <h:outputText value="#{ServiceInfoMB.service.description}"/>
-                        <!--
-                        <b:image value="#{ServiceInfoMB.image}" tooltip="Looks awesome, right?"/>
-                        -->
-                        <br/>
-                        <b:commandButton value="Request an offer!" look="primary" action="#{CreateRequestMB.setWeddingToRequest(MyWeddingMB.myWedding)}"/>
-                        <b:commandButton value="Show location in map" look="info" action="#{MapViewMB.setAddressForSearch(ServiceInfoMB.service.address)}"/>
-                        <br/>
-                        <h:outputText value="Rate this service: "/>
-                        <p:rating value="#{ServiceInfoMB.newRating}">
-                            <p:ajax event="rate" listener="#{ServiceInfoMB.onRate}" update="messages"/>
-                        </p:rating>
-                        <b:commandButton value="Submit rating" action="#{ServiceInfoMB.rateService()}" look="info"/>
+                        <b:panelGrid columns="2">
+                            <h:outputLabel value="Description: "/>
+                            <h:outputText value="#{ServiceInfoMB.service.description}" style="font-size: larger"/>
+                            <h:outputLabel value="Search it on map: "/>
+                            <b:commandButton value="Show location in map" look="info" action="#{MapViewMB.setAddressForSearch(ServiceInfoMB.service.address)}"/>
+                            <h:outputLabel value="Do you want this service at your wedding?"/>
+                            <b:commandButton value="Request an offer!" look="primary" action="#{CreateRequestMB.setWeddingToRequest(MyWeddingMB.myWedding)}"/>
+                            <h:outputLabel value="Rate this service!"/>
+                            <p:rating value="#{ServiceInfoMB.newRating}">
+                                <p:ajax event="rate" listener="#{ServiceInfoMB.onRate}" update="messages"/>
+                            </p:rating>
+                            <b:commandButton value="Submit rating" action="#{ServiceInfoMB.rateService()}" look="info"/>
+                        </b:panelGrid>
                     </b:well>
                 </b:form>
             </b:column>
@@ -42,6 +42,7 @@
         <b:row>
             <b:column col-md="12">
                 <h:form>
+                    <h:outputText value="Here is the schedule of the service: " style="font-size: x-large"/>
                     <p:schedule id="schedule" value="#{ServiceInfoMB.scheduleModel}">
 
                     </p:schedule>
