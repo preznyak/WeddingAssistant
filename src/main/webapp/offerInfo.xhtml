@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Accept the offer!</title>
+</h:head>
+<h:body style="padding-top: 70px; padding-bottom: 20px;">
+    <ui:insert name="header">
+        <ui:include src="./templates/header.xhtml"/>
+    </ui:insert>
+    <b:container>
+        <b:row>
+            <b:column col-md="2">
+            </b:column>
+            <b:column col-md="8" style="padding: 50px;">
+                <b:thumbnail style="opacity: 0.9;" inverse="true">
+                    <h:form prependId="false" style="font-size: larger">
+                        <b:panelGrid columns="2">
+                            <h:outputLabel value="Service name: "/>
+                            <h:outputText value="#{OfferMB.actualOffer.service.serviceName}"/>
+                            <h:outputLabel value="Event name: "/>
+                            <h:outputText value="#{OfferMB.actualOffer.weddingEvent.eventName}"/>
+                            <h:outputLabel value="Date of the wedding: "/>
+                            <h:outputText value="#{OfferMB.actualOffer.weddingEvent.eventDate}"/>
+                            <h:outputLabel value="Location: "/>
+                            <h:outputText value="#{OfferMB.actualOffer.weddingEvent.location}"/>
+                            <h:outputLabel value="Price: "/>
+                            <h:outputText value="#{OfferMB.actualOffer.price} €"/>
+                            <h:outputLabel value="Service owner's signature: "/>
+                            <p:signature readonly="true" style="width:150px; height: 50px;" widgetVar="sig" value="#{OfferMB.actualOffer.serviceOwnerSignature}"/>
+                            <h:outputLabel value="Your signature: "/>
+                            <p:signature style="width: 150px; height: 50px;" value="#{OfferMB.actualOffer.weddingOwnerSignature}"/>
+                        </b:panelGrid>
+                        <b:commandButton value="Accept" look="primary" action="#{OfferMB.acceptOffer(OfferMB.actualOffer)}" icon="pencil"/>
+                    </h:form>
+                </b:thumbnail>
+            </b:column>
+        </b:row>
+    </b:container>
+    <ui:insert name="footer">
+        <ui:include src="./templates/footer.xhtml"/>
+    </ui:insert>
+</h:body>
+</html>
