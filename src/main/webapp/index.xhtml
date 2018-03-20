@@ -5,11 +5,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Wedding Assistant</title>
 </h:head>
-<h:body style="padding-top: 20px; padding-bottom: 20px; background-image: url(./images/ring.jpg); background-size: cover">
+<h:body style="padding-top: 20px; padding-bottom: 20px;">
     <ui:insert name="header">
         <ui:include src="./templates/header.xhtml"/>
     </ui:insert>
@@ -19,13 +20,12 @@
                 <h:form style="text-align: center">
                     <br/>
                     <h1>Welcome to Wedding Assistant!</h1>
-                    <b:jumbotron style="background-color: inherit">
-                    <h3>Organize your dream wedding with Wedding Assistant!</h3>
+                    <h3>Organize your dream wedding with Us!</h3>
                         <p>This is a great place to find services to your wedding!</p>
                         <p>Here are #{ServicesListMB.serviceList.size()} services registered!</p>
+                    <p:ring>
 
-
-                    </b:jumbotron>
+                    </p:ring>
                 </h:form>
             </b:column>
             <b:column col-md="5" style="padding: 50px;">
