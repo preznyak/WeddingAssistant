@@ -15,30 +15,40 @@
     </ui:insert>
     <b:container>
         <b:row>
-            <b:column col-md="12">
+            <b:column colMd="12">
                 <h:form>
-                    <h:outputText value="My Services"/>
-                    <b:dataTable value="#{MyServices.myServicesList}"
-                                 var="service"
-                                responsive="true"
-                                style="background-image: inherit">
-                        <b:dataTableColumn label="Service type" value="#{service.serviceType}"/>
-                        <b:dataTableColumn label="Description" value="#{service.description}"/>
-                        <b:dataTableColumn label="Address" value="#{service.address}"/>
-                        <b:dataTableColumn label="Delete">
-                            <b:commandButton value="Delete" action="#{MyServices.removeMyService(service.id)}" look="danger" iconAwesome="trash"/>
-                        </b:dataTableColumn>
-                        <b:dataTableColumn label="Update">
-                            <b:commandButton value="Update" action="#{UpdateServiceMB.selectServiceForUpdate(service)}" look="primary" iconAwesome="cogs"/>
-                        </b:dataTableColumn>
-                    </b:dataTable>
+                    <h:outputText value="My services" style="font-size: x-large"/>
+                    <p:accordionPanel value="#{MyServices.myServicesList}" var="service">
+                        <p:tab title="#{service.serviceName}" titleStyle="font-size: large">
+                            <b:panelGrid columns="4" size="lg">
+                                <b:badge value="Service type: "/>
+                                <h:outputText value="#{service.serviceType}"/>
+                                <b:badge value="Description: "/>
+                                <h:outputText value="#{service.description}"/>
+                                <b:badge value="Address: "/>
+                                <h:outputText value="#{service.address}"/>
+                                <b:badge value="Rating: "/>
+                                <b:badge>
+                                    <p:rating value="#{service.calculateRating()}" readonly="true"/>
+                                </b:badge>
+                            </b:panelGrid>
+                            <br/>
+                            <b:panelGrid columns="4" size="lg">
+                                <b:badge />
+                                <b:commandButton value="Delete" action="#{MyServices.removeMyService(service.id)}" look="danger" iconAwesome="trash"/>
+                                <b:commandButton value="Update" action="#{UpdateServiceMB.selectServiceForUpdate(service)}" look="primary" iconAwesome="cogs"/>
+                            </b:panelGrid>
+                        </p:tab>
+                    </p:accordionPanel>
                 </h:form>
             </b:column>
         </b:row>
+        <br/>
+        <hr/>
         <b:row>
             <b:column col-md="12">
                 <h:form prependId="true">
-                    <h:outputText value="My Requests"/>
+                    <h:outputText value="My Requests" style="font-size: x-large"/>
                     <b:dataTable value="#{MyServices.myRequests}"
                                  var="myRequest"
                                  responsive="true"
@@ -53,7 +63,7 @@
                         <b:dataTableColumn label="Address" value="#{myRequest.weddingEvent.location}"/>
                         <b:dataTableColumn label="Date" value="#{myRequest.weddingEvent.eventDate}"/>
                         <b:dataTableColumn label="Send offer">
-                            <b:commandButton value="Send offer" look="primary" iconAwesome="handshake" action="#{CreateOfferMB.setWeddingEventAndServiceToOffer(myRequest)}"/>
+                            <b:commandButton value="Send offer" look="info" iconAwesome="handshake" action="#{CreateOfferMB.setWeddingEventAndServiceToOffer(myRequest)}"/>
                         </b:dataTableColumn>
                     </b:dataTable>
                 </h:form>
